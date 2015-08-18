@@ -334,6 +334,10 @@ public:
     unique_ptr<AsyncByteStream> AsyncReader()                       const;
 #endif /* SUPPORT_ASYNC */
 
+#if defined(FEATURE_DRM_CONNECTOR)
+    size_t                      GetResourceLength()                 const;
+#endif
+
 protected:
     string                  _href;
     MimeType                _mediaType;

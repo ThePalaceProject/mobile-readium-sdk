@@ -36,11 +36,12 @@
 #import <ePub3/package.h>
 #import <ePub3/utilities/byte_stream.h>
 #import "RDPackage.h"
+#import <UIKit/UIKit.h>
 
 // Same as HTTPConnection.m (to avoid unnecessary intermediary buffer iterations)
 #define READ_CHUNKSIZE  (1024 * 256)
 
-@interface RDPackageResource() {
+@interface RDPackageResource() <UIAlertViewDelegate> {
 	@private UInt8 m_buffer[READ_CHUNKSIZE];
 	@private std::unique_ptr<ePub3::ByteStream> m_byteStream;
 	@private NSUInteger m_contentLength;
@@ -66,12 +67,22 @@
 	return m_byteStream.get();
 }
 
+#if defined(FEATURE_DRM_CONNECTOR)
+- (NSUInteger)getUncompressedContentLength {
+    [self ensureProperByteStream:NO];
+    return m_contentLength;
+}
+#endif
+
 - (NSData *)readDataFull {
 	if (m_data == nil) {
 		
 		[self ensureProperByteStream:NO];
 
-
+#if defined(FEATURE_DRM_CONNECTOR)
+        if (m_contentLength == NSUIntegerMax)
+            return nil;
+#endif
 		NSMutableData *md = [[NSMutableData alloc] initWithCapacity:m_contentLength == 0 ? 1 : m_contentLength];
 
 		m_contentLengthCheck = 0;
@@ -100,6 +111,45 @@
 	
 	return m_data;
 }
+
+#if defined(FEATURE_DRM_CONNECTOR)
++(NSString*)getMimeTypeFor:(NSString*)relativePath package:(RDPackage*)package
+{
+    if(relativePath) {
+        NSString* ext = [[relativePath pathExtension] lowercaseString];
+        if([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
+            return @"application/xhtml+xml"; // FORCE
+        }
+        else if([ext isEqualToString:@"xml"]) {
+            return @"application/xml"; // FORCE
+        }
+        else if ([ext isEqualToString:@"svg"]) {
+            return @"image/svg+xml"; // FORCE
+        }
+        else if([ext isEqualToString:@"js"]) {
+            return @"text/javascript"; // FORCE
+        }
+        else if([ext isEqualToString:@"css"]) {
+            return @"text/css"; // FORCE
+        }
+    }
+    
+    if(package)
+    {
+        ePub3::string s = ePub3::string(relativePath.UTF8String);
+        ePub3::Package* sdkPackage = (ePub3::Package*)(package.sdkPackage);
+        ePub3::ManifestTable manifest = sdkPackage->Manifest();
+        for (auto i = manifest.begin(); i != manifest.end(); i++) {
+            std::shared_ptr<ePub3::ManifestItem> item = i->second;
+            if (item->Href() == s) {
+                NSString * contentType = [NSString stringWithUTF8String: item->MediaType().c_str()];
+                return contentType;
+            }
+        }
+    }
+    return nil;
+}
+#endif		//FEATURE_DRM_CONNECTOR
 
 
 - (instancetype)initWithByteStream:(void *)byteStream
@@ -181,7 +231,11 @@
 
 		while (totalRead < length)
 		{
+#if defined(FEATURE_DRM_CONNECTOR)
+            std::size_t toRead = sizeof(m_buffer);
+#else
 			std::size_t toRead = MIN(sizeof(m_buffer), length - totalRead);
+#endif
 			std::size_t count = m_byteStream->ReadBytes(m_buffer, toRead);
 			if (count == 0)
 			{
@@ -216,7 +270,20 @@
 	{
 		ePub3::ByteStream *byteStream = m_byteStream.release();
 		m_byteStream.reset((ePub3::ByteStream *)[m_package getProperByteStream:m_relativePath currentByteStream:byteStream isRangeRequest:isRangeRequest]);
+#if defined(FEATURE_DRM_CONNECTOR)
 		m_contentLength = m_byteStream->BytesAvailable();
+        if(m_contentLength == NSUIntegerMax) {
+            NSLog(@"Please use the ACS6 packaged file.");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"DRM"
+                                                            message:@"File is not packaged using ACS-6."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+#else
+		m_contentLength = m_byteStream->BytesAvailable();
+#endif
 		m_contentLengthCheck = 0;
 		m_hasProperStream = YES;
 	}

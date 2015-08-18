@@ -24,6 +24,9 @@
 #include "container.h"
 #include REGEX_INCLUDE
 #include <sstream>
+#if defined (FEATURE_DRM_CONNECTOR)
+#include "ePub3/xml/document.h"
+#endif
 
 EPUB3_BEGIN_NAMESPACE
 
@@ -243,6 +246,65 @@ shared_ptr<xml::Document> ManifestItem::ReferencedDocument() const
     if ( !package )
         return nullptr;
     
+#if defined(FEATURE_DRM_CONNECTOR)
+    ePub3::ManifestItemPtr manifestRef = std::const_pointer_cast<ManifestItem>(Ptr());
+    if( !manifestRef )
+        return nullptr;
+    shared_ptr<ByteStream> byteStream = package->GetFilterChainByteStream(manifestRef);
+
+    assert(byteStream != nullptr);
+    if(!byteStream)
+        return nullptr;
+
+    unsigned char* resbuf = nullptr;
+    unsigned char* temp;
+    size_t resbuflen = 0;
+    
+    unsigned char rdbuf [4096] = {0};
+    size_t rdbuflen = 4096;
+    std::size_t count = byteStream->ReadBytes(rdbuf, rdbuflen);
+    if(count)
+    {
+        resbuf = (unsigned char*)malloc(count);
+        memcpy(resbuf, rdbuf, count);
+        resbuflen = count;
+    }
+    while(count)
+    {
+        count = byteStream->ReadBytes(rdbuf, rdbuflen);
+        
+        temp = (unsigned char*)malloc(count + resbuflen);
+        memcpy(temp, resbuf, resbuflen);
+        free(resbuf);
+        resbuf = temp;
+        memcpy(resbuf+resbuflen, rdbuf, count);
+        resbuflen += count;
+    }
+    
+    shared_ptr<xml::Document> result(nullptr);
+#if EPUB_USE(LIBXML2)
+    int flags = XML_PARSE_RECOVER|XML_PARSE_NOENT|XML_PARSE_DTDATTR;
+    
+    if ( _mediaType == "text/html" )
+    {
+        htmlDocPtr raw = htmlReadMemory((const char*)resbuf, resbuflen, path.c_str(), "utf-8", flags);
+        result = xml::Wrapped<xml::Document>(raw);
+    }
+    else
+    {
+        xmlDocPtr raw = xmlReadMemory((const char*)resbuf, resbuflen, path.c_str(), "utf-8", flags);
+        result = xml::Wrapped<xml::Document>(raw);
+    }
+#elif EPUB_USE(WIN_XML)
+    //result = reader->ReadDocument(path.c_str(), "utf-8", 0);
+#error "todo"
+#endif
+    if(resbuf)
+        free(resbuf);
+    return result;
+    
+#else
+    
     unique_ptr<ArchiveXmlReader> reader = package->XmlReaderForRelativePath(path);
     if ( !reader )
         return nullptr;
@@ -265,6 +327,7 @@ shared_ptr<xml::Document> ManifestItem::ReferencedDocument() const
 	result = reader->ReadDocument(path.c_str(), "utf-8", 0);
 #endif
     return result;
+#endif
 }
 unique_ptr<ByteStream> ManifestItem::Reader() const
 {
@@ -293,5 +356,27 @@ unique_ptr<AsyncByteStream> ManifestItem::AsyncReader() const
     return container->GetArchive()->AsyncByteStreamAtPath(AbsolutePath());
 }
 #endif /* SUPPORT_ASYNC */
+
+#if defined(FEATURE_DRM_CONNECTOR)
+size_t ManifestItem::GetResourceLength() const
+{
+    PackagePtr pPackage = this->GetPackage();
+    ContainerPtr pContainer = pPackage->GetContainer();
+    dp::ref<dputils::EncryptionMetadata> pEncMetadata = pContainer->getEncryptionMetadata();
+    if (pEncMetadata == nullptr)
+      return -1;
+    uft::String itemPath(GetEncryptionInfo()->Path().c_str());
+    dp::ref<dputils::EncryptionItemInfo> pItemInfo = pEncMetadata->getItemForURI(itemPath);
+    size_t _resLength = -1;
+    if(pItemInfo)
+    {
+        dp::String error;
+        _resLength = pItemInfo->getResourceLength();
+        return _resLength;
+    }
+    
+    return _resLength;
+}
+#endif
 
 EPUB3_END_NAMESPACE

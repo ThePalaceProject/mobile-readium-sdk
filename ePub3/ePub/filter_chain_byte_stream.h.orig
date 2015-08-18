@@ -50,9 +50,6 @@ private:
     bool                            _needs_cache;
     ByteBuffer                        _cache;
     ByteBuffer                        _read_cache;
-#if defined(FEATURE_DRM_CONNECTOR)
-    ConstManifestItemPtr            _manifestItemPtr;
-#endif
 
 private:
     FilterChainByteStream(const FilterChainByteStream& o)             _DELETED_;
@@ -68,7 +65,6 @@ public:
     
     virtual size_type BytesAvailable() _NOEXCEPT OVERRIDE
     {
-        size_t resLength = -1;
         if (_needs_cache)
 		{
 			if (_cache.GetBufferSize() == 0 && !_cacheHasBeenFilledUp)
@@ -77,26 +73,7 @@ public:
 			}
             return _cache.GetBufferSize();
         } else {
-#if defined(FEATURE_DRM_CONNECTOR)
-            // Check if there is the uncompressed length mentioned in the encryption entry in encryption.xml.
-            // If it is available, use that
-            // ACS-6 supports the uncompressed ResourceSize entry in the encryption.xml
-            resLength = _manifestItemPtr->GetResourceLength();
-            if (resLength == 0)
-            {
-                // We could not find the ResourceSize entry in the Encryption.xml.
-                // File must be packaged with ACS-5 or below.
-                // Please use the ACS6's packaged file.
-                
-                return ULONG_MAX;
-            }
-#endif
-            if (resLength == -1)
-            {
-                // There is no Encryption.xml. Use input file's data.
-                return _input->BytesAvailable();
-            }
-            return resLength;
+            return _input->BytesAvailable();
         }
     }
     virtual size_type SpaceAvailable() const _NOEXCEPT OVERRIDE

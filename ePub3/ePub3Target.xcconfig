@@ -8,3 +8,4 @@ GCC_ENABLE_CPP_EXCEPTIONS = YES;
 GCC_ENABLE_CPP_RTTI = YES;
 GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 
+ADEPT_CONNECTOR_INCLUDES = ../../../../../dp/public ../../../../../drm/adept/public

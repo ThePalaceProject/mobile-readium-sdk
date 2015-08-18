@@ -393,8 +393,13 @@ bool Package::Open(const string& path)
 #if _XML_OVERRIDE_SWITCHES
     __setupLibXML();
 #endif
+#if defined(FEATURE_DRM_CONNECTOR)
+    auto status = PackageBase::Open(path);
+#else
     auto status = PackageBase::Open(path) && Unpack();
-
+#endif
+    
+#if !defined(FEATURE_DRM_CONNECTOR)
     if (status)
     {
         ConstContainerPtr container = Owner();
@@ -436,12 +441,31 @@ bool Package::Open(const string& path)
             AddProperty(prop);
         }
     }
-
+#endif
+    
 #if _XML_OVERRIDE_SWITCHES
     __resetLibXMLOverrides();
 #endif
     return status;
 }
+
+#if defined(FEATURE_DRM_CONNECTOR)
+bool Package::DoUnpack()
+{
+#if _XML_OVERRIDE_SWITCHES
+    __setupLibXML();
+#endif
+    
+    // fwd to Package class to do Unpack()
+    auto status = Unpack();
+    
+#if _XML_OVERRIDE_SWITCHES
+    __resetLibXMLOverrides();
+#endif
+    return status;
+}
+#endif
+
 bool Package::_OpenForTest(shared_ptr<xml::Document> doc, const string& basePath)
 {
 #if _XML_OVERRIDE_SWITCHES

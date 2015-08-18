@@ -16,6 +16,14 @@
 		1EFA3ACB17AB0BEF003A4BC2 /* filter_manager_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */; };
 		1EFA3ACC17AB0C7A003A4BC2 /* filter_manager_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */; };
 		3418BA7D16C4151E009AA7EF /* ring_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA88FD116C2B4ED00F2014B /* ring_buffer.cpp */; };
+		46E47E001AD2B08A001976BD /* adept_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47DFE1AD2B08A001976BD /* adept_filter.cpp */; };
+		46E47E011AD2B08A001976BD /* adept_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47DFE1AD2B08A001976BD /* adept_filter.cpp */; };
+		46E47E021AD2B08A001976BD /* adept_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E47DFF1AD2B08A001976BD /* adept_filter.h */; };
+		46E47E0E1AD2B0A6001976BD /* connectorHelperFns_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */; };
+		46E47E101AD2B0A6001976BD /* connectorHelperFns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */; };
+		46E47E141AD2B0A6001976BD /* curlnetprovider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */; };
+		46E47E171AD2B0A6001976BD /* DRMWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */; };
+		46E47E1A1AD2B0A6001976BD /* launcherResProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */; };
 		588D24201A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */; };
 		588D24211A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */; };
 		588D24221A02EF8F006A92BB /* PassThroughFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 588D241F1A02EF8F006A92BB /* PassThroughFilter.h */; };
@@ -445,6 +453,19 @@
 		1ED0084717A9DC6F00819EBD /* initialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initialization.cpp; sourceTree = "<group>"; };
 		1EFA3AC917AB0BC0003A4BC2 /* filter_manager_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filter_manager_impl.h; sourceTree = "<group>"; };
 		1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_manager_impl.cpp; sourceTree = "<group>"; };
+		46E47DFE1AD2B08A001976BD /* adept_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adept_filter.cpp; sourceTree = "<group>"; };
+		46E47DFF1AD2B08A001976BD /* adept_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adept_filter.h; sourceTree = "<group>"; };
+		46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = connectorHelperFns_iOS.mm; sourceTree = "<group>"; };
+		46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connectorHelperFns.cpp; sourceTree = "<group>"; };
+		46E47E051AD2B0A6001976BD /* connectorHelperFns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectorHelperFns.h; sourceTree = "<group>"; };
+		46E47E061AD2B0A6001976BD /* consoledrmclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consoledrmclient.h; sourceTree = "<group>"; };
+		46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = curlnetprovider.cpp; sourceTree = "<group>"; };
+		46E47E081AD2B0A6001976BD /* curlnetprovider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlnetprovider.h; sourceTree = "<group>"; };
+		46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DRMWrapper.cpp; sourceTree = "<group>"; };
+		46E47E0A1AD2B0A6001976BD /* DRMWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRMWrapper.h; sourceTree = "<group>"; };
+		46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launcherResProvider.cpp; sourceTree = "<group>"; };
+		46E47E0C1AD2B0A6001976BD /* launcherResProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launcherResProvider.h; sourceTree = "<group>"; };
+		46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "ReadiumAdeptConnector-epub3.xcconfig"; path = "../../ePub3/ReadiumAdeptConnector-epub3.xcconfig"; sourceTree = "<group>"; };
 		588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassThroughFilter.cpp; sourceTree = "<group>"; };
 		588D241F1A02EF8F006A92BB /* PassThroughFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassThroughFilter.h; sourceTree = "<group>"; };
 		850B1AE816A75AB000619C3C /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestData; path = ../../TestData; sourceTree = "<group>"; };
@@ -946,6 +967,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46E47E1C1AD2B0B3001976BD /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */,
+				46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */,
+				46E47E051AD2B0A6001976BD /* connectorHelperFns.h */,
+				46E47E061AD2B0A6001976BD /* consoledrmclient.h */,
+				46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */,
+				46E47E081AD2B0A6001976BD /* curlnetprovider.h */,
+				46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */,
+				46E47E0A1AD2B0A6001976BD /* DRMWrapper.h */,
+				46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */,
+				46E47E0C1AD2B0A6001976BD /* launcherResProvider.h */,
+			);
+			name = Connector;
+			sourceTree = "<group>";
+		};
 		588D241D1A02EF70006A92BB /* SampleFilters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1143,8 @@
 		AB6AC71E1684B698000DE924 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
+				46E47DFE1AD2B08A001976BD /* adept_filter.cpp */,
+				46E47DFF1AD2B08A001976BD /* adept_filter.h */,
 				AB6AC7231684B93C000DE924 /* font_obfuscation.cpp */,
 				AB6AC7241684B93C000DE924 /* font_obfuscation.h */,
 			);
@@ -1540,6 +1580,7 @@
 		ABA72C191655382E003125FF = {
 			isa = PBXGroup;
 			children = (
+				46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */,
 				850B1AE816A75AB000619C3C /* TestData */,
 				ABA72C261655382E003125FF /* ePub3 */,
 				AB61CE4C1694845700299BB1 /* UnitTests */,
@@ -1591,6 +1632,7 @@
 		ABAB94B616654F580018D451 /* ePub */ = {
 			isa = PBXGroup;
 			children = (
+				46E47E1C1AD2B0B3001976BD /* Connector */,
 				AB8C796B182190DB0013054F /* ContentModule */,
 				AB6AC71D1684B691000DE924 /* Filters */,
 				ABA38AA3167BA6E000CB8EDB /* Library */,
@@ -1824,6 +1866,7 @@
 				AB5284E717CCE22E003D7BBF /* pointer_type.h in Headers */,
 				ABA38A9F167A868100CB8EDB /* glossary.h in Headers */,
 				ABA38AA7167BA6FA00CB8EDB /* library.h in Headers */,
+				46E47E021AD2B08A001976BD /* adept_filter.h in Headers */,
 				AB6AC7221684B6AD000DE924 /* filter.h in Headers */,
 				AB6AC7261684B93C000DE924 /* font_obfuscation.h in Headers */,
 				AB5284D817CBD436003D7BBF /* Forward.h in Headers */,
@@ -2062,6 +2105,7 @@
 				ABA4BB0E16ADF64400161B77 /* zip_entry_new.c in Sources */,
 				ABA4BB0F16ADF64400161B77 /* zip_err_str.c in Sources */,
 				ABA4BB1016ADF64400161B77 /* zip_error.c in Sources */,
+				46E47E171AD2B0A6001976BD /* DRMWrapper.cpp in Sources */,
 				ABA4BB1116ADF64400161B77 /* zip_error_clear.c in Sources */,
 				AB5284DC17CCDF8E003D7BBF /* filter_chain.cpp in Sources */,
 				ABA4BB1216ADF64400161B77 /* zip_error_get.c in Sources */,
@@ -2071,6 +2115,7 @@
 				ABA4BB1616ADF64400161B77 /* zip_fclose.c in Sources */,
 				ABA4BB1716ADF64400161B77 /* zip_file_error_clear.c in Sources */,
 				ABA4BB1816ADF64400161B77 /* zip_file_error_get.c in Sources */,
+				46E47E141AD2B0A6001976BD /* curlnetprovider.cpp in Sources */,
 				ABA4BB1916ADF64400161B77 /* zip_file_get_offset.c in Sources */,
 				ABA4BB1A16ADF64400161B77 /* zip_file_strerror.c in Sources */,
 				ABA4BB1B16ADF64400161B77 /* zip_filerange_crc.c in Sources */,
@@ -2078,6 +2123,7 @@
 				ABA4BB1D16ADF64400161B77 /* zip_fopen_index.c in Sources */,
 				ABA4BB1E16ADF64400161B77 /* zip_fread.c in Sources */,
 				588D24211A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */,
+				46E47E1A1AD2B0A6001976BD /* launcherResProvider.cpp in Sources */,
 				ABA4BB1F16ADF64400161B77 /* zip_free.c in Sources */,
 				ABA4BB2016ADF64400161B77 /* zip_get_archive_comment.c in Sources */,
 				ABA4BB2116ADF64400161B77 /* zip_get_archive_flag.c in Sources */,
@@ -2124,6 +2170,7 @@
 				ABA4BB4816ADF64400161B77 /* package.cpp in Sources */,
 				ABA4BB4916ADF64400161B77 /* spine.cpp in Sources */,
 				ABA4BB4A16ADF64400161B77 /* manifest.cpp in Sources */,
+				46E47E0E1AD2B0A6001976BD /* connectorHelperFns_iOS.mm in Sources */,
 				ABA4BB4C16ADF64400161B77 /* xpath_wrangler.cpp in Sources */,
 				ABA4BB4D16ADF64400161B77 /* cfi.cpp in Sources */,
 				ABA4BB4E16ADF64400161B77 /* encryption.cpp in Sources */,
@@ -2137,6 +2184,7 @@
 				ABA4BB5416ADF64400161B77 /* node.cpp in Sources */,
 				ABA4BB5516ADF64400161B77 /* element.cpp in Sources */,
 				ABA4BB5616ADF64400161B77 /* xpath.cpp in Sources */,
+				46E47E101AD2B0A6001976BD /* connectorHelperFns.cpp in Sources */,
 				ABA4BB5716ADF64400161B77 /* base.cpp in Sources */,
 				ABA4BB5816ADF64400161B77 /* io.cpp in Sources */,
 				ABA4BB5916ADF64400161B77 /* schema.cpp in Sources */,
@@ -2153,6 +2201,7 @@
 				ABA88FD916C4415D00F2014B /* ios_get_progname.m in Sources */,
 				AB17B29F171301C800FD5917 /* run_loop_cf.cpp in Sources */,
 				AB976C4B173443DD00AC26CF /* property.cpp in Sources */,
+				46E47E011AD2B08A001976BD /* adept_filter.cpp in Sources */,
 				AB52850417CE6EE7003D7BBF /* executor.cpp in Sources */,
 				AB5284CE17CBADE2003D7BBF /* CPUCacheUtils_arm.S in Sources */,
 				AB976C50173803F800AC26CF /* property_extension.cpp in Sources */,
@@ -2297,6 +2346,7 @@
 				AB906FAE182C1DFF0097A7FE /* optional.cpp in Sources */,
 				ABA88FD216C2B4ED00F2014B /* ring_buffer.cpp in Sources */,
 				AB17B29E171301C800FD5917 /* run_loop_cf.cpp in Sources */,
+				46E47E001AD2B08A001976BD /* adept_filter.cpp in Sources */,
 				AB976C4A173443DD00AC26CF /* property.cpp in Sources */,
 				AB976C4F173803F800AC26CF /* property_extension.cpp in Sources */,
 				AB976C581738057900AC26CF /* property_holder.cpp in Sources */,
@@ -2346,20 +2396,53 @@
 		};
 		ABA4BAEC16ADF5A600161B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
+				CURL_INCLUDES = "";
 				DSTROOT = /tmp/ePub3_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../../ePub3-iOS/ePub3-iOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=0",
+					"$(UFT_DEFINITIONS)",
+					"$(CONNECTOR_DEFINITIONS)",
 				);
-				HEADER_SEARCH_PATHS = (
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[arch=arm64]" = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH64)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=i386]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH64)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2369,6 +2452,7 @@
 		};
 		ABA4BAED16ADF5A600161B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/ePub3_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2376,13 +2460,44 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=0",
+					"$(UFT_DEFINITIONS)",
+					"$(CONNECTOR_DEFINITIONS)",
 				);
-				HEADER_SEARCH_PATHS = (
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[arch=arm64]" = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH64)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=i386]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
+				);
+				"HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH64)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2408,12 +2523,18 @@
 					"BUILDING_EPUB3=1",
 					"DEBUG=1",
 					"$(inherited)",
+					"$(CONNECTOR_DEFINITIONS)",
+					"$(UFT_DEFINITIONS)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -2435,11 +2556,17 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BUILDING_EPUB3=1",
 					"NDEBUG=1",
+					"$(CONNECTOR_DEFINITIONS)",
+					"$(UFT_DEFINITIONS)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -2447,6 +2574,7 @@
 		};
 		ABA72C321655382E003125FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2455,19 +2583,30 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=1",
+					"$(UFT_DEFINITIONS)",
+					"$(CONNECTOR_DEFINITIONS)",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
 				);
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		ABA72C331655382E003125FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2476,13 +2615,22 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=1",
+					"$(UFT_DEFINITIONS)",
+					"$(CONNECTOR_DEFINITIONS)",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+				);
+				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/include",
+					"$(ADEPT_CONNECTOR_INCLUDES)",
+					"$(LIBCURL_HEADER_SEARCH_PATH32)",
 				);
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

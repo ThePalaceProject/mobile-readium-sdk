@@ -46,11 +46,21 @@
 
 
 - (UInt64)contentLength {
+#if defined(FEATURE_DRM_CONNECTOR)
+    return [m_resource getUncompressedContentLength];
+#else
 	return m_resource.contentLength;
+#endif
 }
 
 
 - (NSDictionary *)httpHeaders {
+#if defined(FEATURE_DRM_CONNECTOR)
+    NSString* contentType = [RDPackageResource getMimeTypeFor:[m_resource relativePath] package:[m_resource package]];
+    if(!contentType)
+        return @{};
+    return [NSDictionary dictionaryWithObject:contentType forKey:@"Content-Type"];
+#else
 	if(m_resource.relativePath) {
 		NSString* ext = [[m_resource.relativePath pathExtension] lowercaseString];
 		if([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
@@ -68,6 +78,7 @@
 	else {
 		return @{};
 	}
+#endif //FEATURE_DRM_CONNECTOR
 }
 
 

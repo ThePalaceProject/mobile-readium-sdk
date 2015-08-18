@@ -76,4 +76,8 @@
 // - A FilterChainByteStream when it is not a Byte Range request or more than one ContentFilter applies.
 - (void *)getProperByteStream:(NSString *)relativePath currentByteStream:(void *)currentByteStream isRangeRequest:(BOOL)isRangeRequest;
 
+#if defined(FEATURE_DRM_CONNECTOR)
+-(void*) sdkPackage;
+#endif
+
 @end

@@ -29,6 +29,8 @@
 #include <ePub3/xml/io.h>
 #include <ePub3/content_module_manager.h>
 
+#include <sys/time.h>
+
 EPUB3_BEGIN_NAMESPACE
 
 static const char * gContainerFilePath = "META-INF/container.xml";
@@ -56,6 +58,7 @@ _archive(std::move(o._archive)), _ocf(o._ocf), _packages(std::move(o._packages))
 Container::~Container()
 {
 }
+
 bool Container::Open(const string& path)
 {
 	_archive = Archive::Open(path.stl_str());
@@ -91,21 +94,79 @@ bool Container::Open(const string& path)
 		return false;
 
 	LoadEncryption();
+    
+#if defined(FEATURE_DRM_CONNECTOR)
+    {
+        // Assuming that rights.xml path is the same as epub path with "_rights.xml" suffix.
+        // Clients can change this behavior whenever they want
+        string rightsXMLPath = path + "_rights.xml";
+        ::printf("rights.xml filename = %s\n", rightsXMLPath.utf8());
+        FILE *fp = fopen(rightsXMLPath.c_str(), "rb");
+        if(fp)
+        {
+            size_t fileSize = 0;
+            fseek(fp, 0, SEEK_END);
+            fileSize = ftell(fp);
+            fseek(fp, 0, SEEK_SET);
+            unique_ptr<unsigned char> buf = unique_ptr<unsigned char>(new unsigned char[fileSize]);
+            fread(buf.get(), fileSize, 1, fp);
+            _rightsXMLData = dp::Data(buf.get(), fileSize);
+            fclose(fp);
+        }
+    }
+#endif //#if defined(FEATURE_DRM_CONNECTOR)
 
     ParseVendorMetadata();
 
-	for (auto n : nodes)
-	{
-		string type = _getProp(n, "media-type");
+#if defined (FEATURE_DRM_CONNECTOR)
+    PackageList thepackages;
+    for (auto n : nodes)
+    {
+        string type = _getProp(n, "media-type");
+        
+        string path = _getProp(n, "full-path");
+        if (path.empty())
+            continue;
+        
+        auto pkg = Package::New(Ptr(), type);
+        if (pkg->Open(path))
+        {
+            thepackages.push_back(pkg);
+            _packages.push_back(pkg);
+        }
+    }
 
-		string path = _getProp(n, "full-path");
-		if (path.empty())
-			continue;
+    auto fm = FilterManager::Instance();
+    for (auto& pkg : thepackages)
+    {
+        auto fc = fm->BuildFilterChainForPackage(pkg);
+        pkg->SetFilterChain(fc);
+    }
+    
+    for (auto pkgIt = _packages.begin(); pkgIt != _packages.end(); )
+    {
+        auto bookPkg = std::dynamic_pointer_cast<Package>(*pkgIt);
+        if (!bookPkg->DoUnpack())
+        {
+            pkgIt = _packages.erase(pkgIt);
+            continue;
+        }
+        pkgIt++;
+    }
 
-		auto pkg = Package::New(Ptr(), type);
-		if (pkg->Open(path))
-			_packages.push_back(pkg);
-	}
+#else
+    for (auto n : nodes)
+    {
+        string type = _getProp(n, "media-type");
+        
+        string path = _getProp(n, "full-path");
+        if (path.empty())
+            continue;
+        
+        auto pkg = Package::New(Ptr(), type);
+        if (pkg->Open(path))
+            _packages.push_back(pkg);
+    }
 
     auto fm = FilterManager::Instance();
 	for (auto& pkg : _packages)
@@ -113,7 +174,7 @@ bool Container::Open(const string& path)
         auto fc = fm->BuildFilterChainForPackage(pkg);
 		pkg->SetFilterChain(fc);
 	}
-
+#endif
 	return true;
 }
 ContainerPtr Container::OpenContainer(const string &path)
@@ -304,6 +365,17 @@ void Container::LoadEncryption()
         if ( encPtr->ParseXML(node) )
             _encryption.push_back(encPtr);
     }
+    
+#if defined(FEATURE_DRM_CONNECTOR)
+    unique_ptr<ArchiveReader> pZipReader1 = _archive->ReaderAtPath(gEncryptionFilePath);
+    if ( !pZipReader1 )
+        return;
+    size_t totalSize = pZipReader1->total_size();
+    unique_ptr<unsigned char> data = unique_ptr<unsigned char>(new unsigned char[totalSize]);
+    pZipReader1->read(data.get(), totalSize);
+    dp::Data encryptionXMLData(data.get(), totalSize);
+    _encMetadata = dputils::EncryptionMetadata::createFromXMLData(encryptionXMLData);
+#endif //#if defined(FEATURE_DRM_CONNECTOR)
 }
 shared_ptr<EncryptionInfo> Container::EncryptionInfoForPath(const string &path) const
 {

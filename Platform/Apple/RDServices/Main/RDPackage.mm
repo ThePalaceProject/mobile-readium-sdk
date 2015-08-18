@@ -421,4 +421,11 @@
 	return byteStream;
 }
 
+#if defined(FEATURE_DRM_CONNECTOR)
+-(void*) sdkPackage
+{
+    return m_package;
+}
+#endif
+
 @end

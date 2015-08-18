@@ -1,0 +1,39 @@
+//*************************************************************************
+// ADOBE CONFIDENTIAL
+// ___________________
+//
+//  Copyright 2015 Adobe Systems Incorporated
+//  All Rights Reserved.
+//
+// NOTICE:  All information contained herein is, and remains
+// the property of Adobe Systems Incorporated and its suppliers,
+// if any.  The intellectual and technical concepts contained
+// herein are proprietary to Adobe Systems Incorporated and its
+// suppliers and are protected by trade secret or copyright law.
+// Dissemination of this information or reproduction of this material
+// is strictly forbidden unless prior written permission is obtained
+// from Adobe Systems Incorporated.
+//**************************************************************************
+
+UFT_DEFINITIONS = UFT_MEMORY_DEBUG=0 UFT_ATOM_COMPILE_TIME USING_MAC_SDK_VERSION_10_5_OR_ABOVE
+
+CONNECTOR_DEFINITIONS = FEATURE_DRM_CONNECTOR
+
+LIBCURL_HEADER_SEARCH_PATH64 =  ../../../../../thirdparty/curl/public/ios/Include-64
+LIBCURL_HEADER_SEARCH_PATH32 =  ../../../../../thirdparty/curl/public/ios/Include-32
+
+ADEPT_CONNECTOR_LIB_FLAGS = -lhobbes-iOS -lcts-iOS -lt3-iOS -ldatacollector-iOS -lpng-iOS -lfonts-iOS -lhyphen-iOS -ladept-iOS -lcrypt-openssl-iOS -ldp-iOS -lexpat-iOS -lxml-iOS -lzlib-iOS -lssl -lcrypto -lcurl
+
+// MACRO below are used by ePub3 build
+// "../../../../../" will take you to the <RMSDK-ROOT> folder in case of ePub3 build
+
+ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS = ../../../../../lib/ios/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) ../../../../../thirdparty/openssl/public/ios/lib ../../../../../thirdparty/curl/public/ios/lib
+
+ADEPT_CONNECTOR_INCLUDES = ../../../../../dp/public ../../../../../drm/adept/public ../../../../../xml/uft/public ../../../../../xml/mdom/public ../../../../../xml/xpath/public
+
+
+HEADER_SEARCH_PATHS[arch=arm64] = /usr/include/libxml2   $(SRCROOT)/include  $(ADEPT_CONNECTOR_INCLUDES)  $(LIBCURL_HEADER_SEARCH_PATH64)
+HEADER_SEARCH_PATHS[arch=x86_64] = /usr/include/libxml2   $(SRCROOT)/include  $(ADEPT_CONNECTOR_INCLUDES)  $(LIBCURL_HEADER_SEARCH_PATH64)
+HEADER_SEARCH_PATHS[arch=i386] = /usr/include/libxml2   $(SRCROOT)/include  $(ADEPT_CONNECTOR_INCLUDES)  $(LIBCURL_HEADER_SEARCH_PATH32)
+HEADER_SEARCH_PATHS[arch=armv7] = /usr/include/libxml2   $(SRCROOT)/include  $(ADEPT_CONNECTOR_INCLUDES)  $(LIBCURL_HEADER_SEARCH_PATH32)
+HEADER_SEARCH_PATHS[arch=armv7s] = /usr/include/libxml2   $(SRCROOT)/include  $(ADEPT_CONNECTOR_INCLUDES)  $(LIBCURL_HEADER_SEARCH_PATH32)
