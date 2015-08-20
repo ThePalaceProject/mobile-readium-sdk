@@ -465,7 +465,7 @@
 		46E47E0A1AD2B0A6001976BD /* DRMWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRMWrapper.h; sourceTree = "<group>"; };
 		46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launcherResProvider.cpp; sourceTree = "<group>"; };
 		46E47E0C1AD2B0A6001976BD /* launcherResProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launcherResProvider.h; sourceTree = "<group>"; };
-		46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "ReadiumAdeptConnector-epub3.xcconfig"; path = "../../ePub3/ReadiumAdeptConnector-epub3.xcconfig"; sourceTree = "<group>"; };
+		46E9A6BF1B007F9C00201A2F /* ePub3+RMSDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "ePub3+RMSDK.xcconfig"; path = "../../ePub3/ePub3+RMSDK.xcconfig"; sourceTree = "<group>"; };
 		588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassThroughFilter.cpp; sourceTree = "<group>"; };
 		588D241F1A02EF8F006A92BB /* PassThroughFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassThroughFilter.h; sourceTree = "<group>"; };
 		850B1AE816A75AB000619C3C /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestData; path = ../../TestData; sourceTree = "<group>"; };
@@ -1580,7 +1580,7 @@
 		ABA72C191655382E003125FF = {
 			isa = PBXGroup;
 			children = (
-				46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */,
+				46E9A6BF1B007F9C00201A2F /* ePub3+RMSDK.xcconfig */,
 				850B1AE816A75AB000619C3C /* TestData */,
 				ABA72C261655382E003125FF /* ePub3 */,
 				AB61CE4C1694845700299BB1 /* UnitTests */,
@@ -2396,7 +2396,6 @@
 		};
 		ABA4BAEC16ADF5A600161B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				CURL_INCLUDES = "";
 				DSTROOT = /tmp/ePub3_iOS.dst;
@@ -2452,7 +2451,6 @@
 		};
 		ABA4BAED16ADF5A600161B77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/ePub3_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2574,7 +2572,6 @@
 		};
 		ABA72C321655382E003125FF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2606,7 +2603,6 @@
 		};
 		ABA72C331655382E003125FF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E9A6BF1B007F9C00201A2F /* ReadiumAdeptConnector-epub3.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

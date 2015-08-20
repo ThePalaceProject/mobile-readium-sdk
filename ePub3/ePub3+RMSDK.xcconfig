@@ -26,9 +26,6 @@ LIBCURL_HEADER_SEARCH_PATH32 =  $(ADEPT_RMSDK)/thirdparty/curl/public/ios/Includ
 
 ADEPT_CONNECTOR_LIB_FLAGS = -lhobbes-iOS -lcts-iOS -lt3-iOS -ldatacollector-iOS -lpng-iOS -lfonts-iOS -lhyphen-iOS -ladept-iOS -lcrypt-openssl-iOS -ldp-iOS -lexpat-iOS -lxml-iOS -lzlib-iOS -lssl -lcrypto -lcurl
 
-// MACRO below are used by ePub3 build
-// "../../../../../" will take you to the <RMSDK-ROOT> folder in case of ePub3 build
-
 ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS = $(ADEPT_RMSDK)/lib/ios/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) $(ADEPT_RMSDK)/thirdparty/openssl/public/ios/lib $(ADEPT_RMSDK)/thirdparty/curl/public/ios/lib
 
 ADEPT_CONNECTOR_INCLUDES = $(ADEPT_RMSDK)/dp/public $(ADEPT_RMSDK)/drm/adept/public $(ADEPT_RMSDK)/xml/uft/public $(ADEPT_RMSDK)/xml/mdom/public $(ADEPT_RMSDK)/xml/xpath/public
