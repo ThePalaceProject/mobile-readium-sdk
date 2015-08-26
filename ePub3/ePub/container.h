@@ -36,7 +36,6 @@
 #include "dp_fuse.h"
 #include "connectorHelperFns.h"
 #include "launcherResProvider.h"
-#include "curlnetprovider.h"
 #include "consoledrmclient.h"
 #endif
 

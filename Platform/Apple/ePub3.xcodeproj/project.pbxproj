@@ -21,7 +21,6 @@
 		46E47E021AD2B08A001976BD /* adept_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E47DFF1AD2B08A001976BD /* adept_filter.h */; };
 		46E47E0E1AD2B0A6001976BD /* connectorHelperFns_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */; };
 		46E47E101AD2B0A6001976BD /* connectorHelperFns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */; };
-		46E47E141AD2B0A6001976BD /* curlnetprovider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */; };
 		46E47E171AD2B0A6001976BD /* DRMWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */; };
 		46E47E1A1AD2B0A6001976BD /* launcherResProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */; };
 		588D24201A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */; };
@@ -459,8 +458,6 @@
 		46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connectorHelperFns.cpp; sourceTree = "<group>"; };
 		46E47E051AD2B0A6001976BD /* connectorHelperFns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectorHelperFns.h; sourceTree = "<group>"; };
 		46E47E061AD2B0A6001976BD /* consoledrmclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consoledrmclient.h; sourceTree = "<group>"; };
-		46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = curlnetprovider.cpp; sourceTree = "<group>"; };
-		46E47E081AD2B0A6001976BD /* curlnetprovider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlnetprovider.h; sourceTree = "<group>"; };
 		46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DRMWrapper.cpp; sourceTree = "<group>"; };
 		46E47E0A1AD2B0A6001976BD /* DRMWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRMWrapper.h; sourceTree = "<group>"; };
 		46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launcherResProvider.cpp; sourceTree = "<group>"; };
@@ -974,8 +971,6 @@
 				46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */,
 				46E47E051AD2B0A6001976BD /* connectorHelperFns.h */,
 				46E47E061AD2B0A6001976BD /* consoledrmclient.h */,
-				46E47E071AD2B0A6001976BD /* curlnetprovider.cpp */,
-				46E47E081AD2B0A6001976BD /* curlnetprovider.h */,
 				46E47E091AD2B0A6001976BD /* DRMWrapper.cpp */,
 				46E47E0A1AD2B0A6001976BD /* DRMWrapper.h */,
 				46E47E0B1AD2B0A6001976BD /* launcherResProvider.cpp */,
@@ -2115,7 +2110,6 @@
 				ABA4BB1616ADF64400161B77 /* zip_fclose.c in Sources */,
 				ABA4BB1716ADF64400161B77 /* zip_file_error_clear.c in Sources */,
 				ABA4BB1816ADF64400161B77 /* zip_file_error_get.c in Sources */,
-				46E47E141AD2B0A6001976BD /* curlnetprovider.cpp in Sources */,
 				ABA4BB1916ADF64400161B77 /* zip_file_get_offset.c in Sources */,
 				ABA4BB1A16ADF64400161B77 /* zip_file_strerror.c in Sources */,
 				ABA4BB1B16ADF64400161B77 /* zip_filerange_crc.c in Sources */,

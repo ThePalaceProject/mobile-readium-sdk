@@ -32,9 +32,6 @@
 #import <ePub3/initialization.h>
 #import <ePub3/utilities/error_handler.h>
 #import "RDPackage.h"
-#if defined(FEATURE_DRM_CONNECTOR)
-#import <ePub3/DRMWrapper.h>
-#endif
 
 
 @interface RDContainer () {
@@ -88,44 +85,7 @@
 		ePub3::InitializeSdk();
 		ePub3::PopulateFilterManager();
 
-#if defined(FEATURE_DRM_CONNECTOR)
-        if ([path hasSuffix:@".acsm"])
-        {
-            @try {
-                std::string fulfilledfilePath;
-                getWrapperObj().DoFulFill(path.UTF8String, fulfilledfilePath);
-                
-                m_path = [NSString stringWithUTF8String:fulfilledfilePath.c_str()];
-                if ([m_path compare:@""] == NSOrderedSame)
-                {
-                    NSLog(@"Error in fulfillment");
-                    return nil;
-                }
-                if ([m_path hasSuffix:@".pdf"])
-                {
-                    // pdf format is not supported here.
-                    NSLog(@"pdf format is not supported");
-                    return nil;
-                }
-                // Returned file-path is not the absolutePath, but starts with "file://".
-                // We will need to convert it into path.
-                NSURL *url = [NSURL URLWithString:[m_path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                m_path = url.path;
-            }
-            @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-                return nil;
-            }
-            @catch (...) {
-                NSLog(@"Error:");
-                return nil;
-            }
-        }
-        else
-            m_path = path;
-#else
-        m_path = path;
-#endif
+    m_path = path;
 		m_container = ePub3::Container::OpenContainer(m_path.UTF8String);
 
 		if (m_container == nullptr) {

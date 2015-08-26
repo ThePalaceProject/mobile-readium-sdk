@@ -26,7 +26,7 @@
 #include <zlib.h>
 
 #include "consoledrmclient.h"
-#include "curlnetprovider.h"
+//#include "curlnetprovider.h"
 #include "connectorHelperFns.h"
 #include "launcherResProvider.h"
 
@@ -48,10 +48,10 @@ DRMWrapper::DRMWrapper()
 , m_pDevice ( nullptr )
 , m_error (false)
 {
-    initializeDP();
+//    initializeDP();
 #ifdef NETPROVIDERIMPL
-    g_netProvider = new NETPROVIDERIMPL(/*g_verbose*/false);
-    dpnet::NetProvider::setProvider(g_netProvider);
+//    g_netProvider = new NETPROVIDERIMPL(/*g_verbose*/false);
+//    dpnet::NetProvider::setProvider(g_netProvider);
 #endif
 #ifdef EPUB_PLATFORM_IOS
     dp::String resFolderURL = connectorutils::getResourceURL();
@@ -86,6 +86,7 @@ DRMWrapper::~DRMWrapper()
         delete m_pDRMClient;
 }
 
+/*
 void DRMWrapper::initializeDP()
 {
     static bool g_bInitialized = false;
@@ -270,6 +271,7 @@ dp::String DRMWrapper::getErrorString()
 {
     return m_errorString;
 }
+ */
 
 #endif // FEATURE_DRM_CONNECTOR
 

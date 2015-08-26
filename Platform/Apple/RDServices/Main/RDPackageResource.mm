@@ -112,45 +112,6 @@
 	return m_data;
 }
 
-#if defined(FEATURE_DRM_CONNECTOR)
-+(NSString*)getMimeTypeFor:(NSString*)relativePath package:(RDPackage*)package
-{
-    if(relativePath) {
-        NSString* ext = [[relativePath pathExtension] lowercaseString];
-        if([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
-            return @"application/xhtml+xml"; // FORCE
-        }
-        else if([ext isEqualToString:@"xml"]) {
-            return @"application/xml"; // FORCE
-        }
-        else if ([ext isEqualToString:@"svg"]) {
-            return @"image/svg+xml"; // FORCE
-        }
-        else if([ext isEqualToString:@"js"]) {
-            return @"text/javascript"; // FORCE
-        }
-        else if([ext isEqualToString:@"css"]) {
-            return @"text/css"; // FORCE
-        }
-    }
-    
-    if(package)
-    {
-        ePub3::string s = ePub3::string(relativePath.UTF8String);
-        ePub3::Package* sdkPackage = (ePub3::Package*)(package.sdkPackage);
-        ePub3::ManifestTable manifest = sdkPackage->Manifest();
-        for (auto i = manifest.begin(); i != manifest.end(); i++) {
-            std::shared_ptr<ePub3::ManifestItem> item = i->second;
-            if (item->Href() == s) {
-                NSString * contentType = [NSString stringWithUTF8String: item->MediaType().c_str()];
-                return contentType;
-            }
-        }
-    }
-    return nil;
-}
-#endif		//FEATURE_DRM_CONNECTOR
-
 
 - (instancetype)initWithByteStream:(void *)byteStream
 	package:(RDPackage *)package

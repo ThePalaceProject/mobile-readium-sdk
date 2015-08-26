@@ -56,10 +56,9 @@
 
 - (NSDictionary *)httpHeaders {
 #if defined(FEATURE_DRM_CONNECTOR)
-    NSString* contentType = [RDPackageResource getMimeTypeFor:[m_resource relativePath] package:[m_resource package]];
-    if(!contentType)
+    if(!m_resource.mimeType)
         return @{};
-    return [NSDictionary dictionaryWithObject:contentType forKey:@"Content-Type"];
+    return [NSDictionary dictionaryWithObject:m_resource.mimeType forKey:@"Content-Type"];
 #else
 	if(m_resource.relativePath) {
 		NSString* ext = [[m_resource.relativePath pathExtension] lowercaseString];

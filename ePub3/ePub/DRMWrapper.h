@@ -55,16 +55,16 @@ public:
     
     ~DRMWrapper();
     
-    bool IsDeviceAuthorized();
-    
+//    bool IsDeviceAuthorized();
+  
     // Authorize this device for the user to open ePub file
-    void AuthorizeDevice(const std::string& authProvider, const std::string& uName, const std::string& uPasswd);
-    
-    void Deactivate();
-    
-    void DoFulFill(const std::string& tokenFile, std::string& outputPath);
-    void initializeDP();
-    dp::String getErrorString();
+//    void AuthorizeDevice(const std::string& authProvider, const std::string& uName, const std::string& uPasswd);
+  
+//    void Deactivate();
+  
+//    void DoFulFill(const std::string& tokenFile, std::string& outputPath);
+//    void initializeDP();
+//    dp::String getErrorString();
 
 private:
     ConsoleDRMProcessorClient* m_pDRMClient;

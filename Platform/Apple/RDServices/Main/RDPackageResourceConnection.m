@@ -259,7 +259,8 @@ static __weak RDPackageResourceServer *m_packageResourceServer = nil;
 																	   initWithData:newData];
 #if defined(FEATURE_DRM_CONNECTOR)
                         {
-                            dataResponse.contentType = [RDPackageResource getMimeTypeFor:resource.relativePath package:resource.package];
+                            dataResponse.contentType = resource.mimeType;
+                          
                             // for xhtml files, we need to set the charset, otherwise you will see garbled characters for non-ASCII
                             dataResponse.contentType = [NSString stringWithFormat:@"%@;charset=utf-8", dataResponse.contentType];
                         }

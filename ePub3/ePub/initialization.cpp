@@ -40,10 +40,6 @@ void InitializeSdk()
     std::call_once(__once, []{
         Archive::Initialize();
         FilterManager::Instance()->SetInstance(new FilterManagerImpl());
-#if defined(FEATURE_DRM_CONNECTOR)
-        getWrapperObj().initializeDP();
-#endif
-
     });
 }
 
