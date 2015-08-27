@@ -20,7 +20,6 @@
 #include "connectorHelperFns.h"
 
 #include "dp_all.h"
-#include "consoledrmclient.h"
 
 #include <stdio.h>
 #include <unistd.h>

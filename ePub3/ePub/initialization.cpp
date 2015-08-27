@@ -23,11 +23,6 @@
 #include <ePub3/archive.h>
 #include <ePub3/filter_manager_impl.h>
 #include <ePub3/font_obfuscation.h>
-#if defined(FEATURE_DRM_CONNECTOR)
-#include <ePub3/adept_filter.h>
-#include <ePub3/container.h>
-#include <ePub3/DRMWrapper.h>
-#endif
 #include <ePub3/switch_preprocessor.h>
 #include <ePub3/object_preprocessor.h>
 #include <ePub3/PassThroughFilter.h>
@@ -48,9 +43,6 @@ void PopulateFilterManager()
     static std::once_flag __once;
     std::call_once(__once, []{
         FontObfuscator::Register();
-#if defined(FEATURE_DRM_CONNECTOR)
-        AdeptFilter::Register();
-#endif
 		// If you want to activate the PassThroughFilter (to do testing or debugging),
 		// simply uncomment the line below. Also take a look at the file PassThroughFilter.cpp
 		// to see if the class is enabling itself.

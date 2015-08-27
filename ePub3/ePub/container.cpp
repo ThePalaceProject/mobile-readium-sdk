@@ -29,8 +29,6 @@
 #include <ePub3/xml/io.h>
 #include <ePub3/content_module_manager.h>
 
-#include <sys/time.h>
-
 EPUB3_BEGIN_NAMESPACE
 
 static const char * gContainerFilePath = "META-INF/container.xml";
@@ -58,7 +56,6 @@ _archive(std::move(o._archive)), _ocf(o._ocf), _packages(std::move(o._packages))
 Container::~Container()
 {
 }
-
 bool Container::Open(const string& path)
 {
 	_archive = Archive::Open(path.stl_str());
