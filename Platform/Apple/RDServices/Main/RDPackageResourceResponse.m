@@ -46,38 +46,34 @@
 
 
 - (UInt64)contentLength {
-#if defined(FEATURE_DRM_CONNECTOR)
-    return [m_resource getUncompressedContentLength];
-#else
 	return m_resource.contentLength;
-#endif
 }
 
 
 - (NSDictionary *)httpHeaders {
-#if defined(FEATURE_DRM_CONNECTOR)
-    if(!m_resource.mimeType)
-        return @{};
-    return [NSDictionary dictionaryWithObject:m_resource.mimeType forKey:@"Content-Type"];
-#else
-	if(m_resource.relativePath) {
-		NSString* ext = [[m_resource.relativePath pathExtension] lowercaseString];
-		if([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
-			return [NSDictionary dictionaryWithObject:@"application/xhtml+xml" forKey:@"Content-Type"]; // FORCE
-		}
-		else if([ext isEqualToString:@"xml"]) {
-			return [NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Content-Type"]; // FORCE
-		}
+	NSString *contentType = m_resource.mimeType;
+
+	// force MIMEType for basic files
+	if (m_resource.relativePath) {
+		NSString *ext = [[m_resource.relativePath pathExtension] lowercaseString];
+		if ([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
+			contentType = @"application/xhtml+xml";
+		} else if([ext isEqualToString:@"xml"]) {
+			contentType = @"application/xml";
+        } else if ([ext isEqualToString:@"svg"]) {
+			contentType = @"image/svg+xml";
+        } else if ([ext isEqualToString:@"js"]) {
+			contentType = @"text/javascript";
+        } else if ([ext isEqualToString:@"css"]) {
+			contentType = @"text/css";
+        }
 	}
 
-	NSString *contentType = self->m_resource.mimeType;
 	if (contentType) {
 		return @{@"Content-Type": contentType};
 	}
-	else {
-		return @{};
-	}
-#endif //FEATURE_DRM_CONNECTOR
+	
+	return @{};
 }
 
 

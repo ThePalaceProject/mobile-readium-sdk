@@ -50,8 +50,5 @@
 
 - (NSData *)readDataFull;
 - (NSData *)readDataOfLength:(NSUInteger)length offset:(UInt64)offset isRangeRequest:(BOOL)isRangeRequest;
-#if defined(FEATURE_DRM_CONNECTOR)
-- (NSUInteger)getUncompressedContentLength;
-#endif
 
 @end

@@ -98,7 +98,7 @@ static __weak RDPackageResourceServer *m_packageResourceServer = nil;
 - (NSObject <HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path {
 	if (m_packageResourceServer == nil ||
 		method == nil ||
-		![method isEqualToString:@"GET"] ||
+		(![method isEqualToString:@"GET"] && ![method isEqualToString:@"HEAD"]) ||
 		path == nil ||
 		path.length == 0)
 	{
@@ -257,19 +257,12 @@ static __weak RDPackageResourceServer *m_packageResourceServer = nil;
 					if (newData != nil) {
 						RDPackageResourceDataResponse *dataResponse = [[RDPackageResourceDataResponse alloc]
 																	   initWithData:newData];
-#if defined(FEATURE_DRM_CONNECTOR)
-                        {
-                            dataResponse.contentType = resource.mimeType;
-                          
-                            // for xhtml files, we need to set the charset, otherwise you will see garbled characters for non-ASCII
-                            dataResponse.contentType = [NSString stringWithFormat:@"%@;charset=utf-8", dataResponse.contentType];
-                        }
-#else
-                        if (resource.mimeType) {
-                            dataResponse.contentType = resource.mimeType;
-                        }
-#endif		//FEATURE_DRM_CONNECTOR
-
+            
+            
+            if (resource.mimeType) {
+                dataResponse.contentType = resource.mimeType;
+            }
+            
 						response = dataResponse;
 						return response;
 					}

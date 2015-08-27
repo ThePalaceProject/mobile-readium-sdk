@@ -330,31 +330,9 @@
 								   relativePath:relativePath];
 	
 	if (resource != nil && manifestItem != nullptr) {
-		NSString *mimeType;
-		
-#if defined(FEATURE_DRM_CONNECTOR)
-		// force mimeType for basic files
-        NSString *ext = [[relativePath pathExtension] lowercaseString];
-        if ([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
-			mimeType = @"application/xhtml+xml";
-        } else if ([ext isEqualToString:@"xml"]) {
-			mimeType = @"application/xml";
-        } else if ([ext isEqualToString:@"svg"]) {
-			mimeType = @"image/svg+xml";
-        } else if ([ext isEqualToString:@"js"]) {
-			mimeType = @"text/javascript";
-        } else if ([ext isEqualToString:@"css"]) {
-			mimeType = @"text/css";
-        }
-#endif		//FEATURE_DRM_CONNECTOR
-		
-		if (mimeType == nil) {
-			const ePub3::ManifestItem::MimeType &mediaType = manifestItem->MediaType();
-			mimeType = [NSString stringWithUTF8String:mediaType.c_str()];
-		}
-		
-		resource.mimeType = mimeType;
-    }
+		const ePub3::ManifestItem::MimeType &mediaType = manifestItem->MediaType();
+		resource.mimeType = [NSString stringWithUTF8String:mediaType.c_str()];
+	}
 	
 	return resource;
 }

@@ -36,12 +36,11 @@
 #import <ePub3/package.h>
 #import <ePub3/utilities/byte_stream.h>
 #import "RDPackage.h"
-#import <UIKit/UIKit.h>
 
 // Same as HTTPConnection.m (to avoid unnecessary intermediary buffer iterations)
 #define READ_CHUNKSIZE  (1024 * 256)
 
-@interface RDPackageResource() <UIAlertViewDelegate> {
+@interface RDPackageResource() {
 	@private UInt8 m_buffer[READ_CHUNKSIZE];
 	@private std::unique_ptr<ePub3::ByteStream> m_byteStream;
 	@private NSUInteger m_contentLength;
@@ -67,22 +66,12 @@
 	return m_byteStream.get();
 }
 
-#if defined(FEATURE_DRM_CONNECTOR)
-- (NSUInteger)getUncompressedContentLength {
-    [self ensureProperByteStream:NO];
-    return m_contentLength;
-}
-#endif
-
 - (NSData *)readDataFull {
 	if (m_data == nil) {
 		
 		[self ensureProperByteStream:NO];
 
-#if defined(FEATURE_DRM_CONNECTOR)
-        if (m_contentLength == NSUIntegerMax)
-            return nil;
-#endif
+    
 		NSMutableData *md = [[NSMutableData alloc] initWithCapacity:m_contentLength == 0 ? 1 : m_contentLength];
 
 		m_contentLengthCheck = 0;
@@ -192,11 +181,7 @@
 
 		while (totalRead < length)
 		{
-#if defined(FEATURE_DRM_CONNECTOR)
-            std::size_t toRead = sizeof(m_buffer);
-#else
 			std::size_t toRead = MIN(sizeof(m_buffer), length - totalRead);
-#endif
 			std::size_t count = m_byteStream->ReadBytes(m_buffer, toRead);
 			if (count == 0)
 			{
@@ -231,20 +216,7 @@
 	{
 		ePub3::ByteStream *byteStream = m_byteStream.release();
 		m_byteStream.reset((ePub3::ByteStream *)[m_package getProperByteStream:m_relativePath currentByteStream:byteStream isRangeRequest:isRangeRequest]);
-#if defined(FEATURE_DRM_CONNECTOR)
 		m_contentLength = m_byteStream->BytesAvailable();
-        if(m_contentLength == NSUIntegerMax) {
-            NSLog(@"Please use the ACS6 packaged file.");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"DRM"
-                                                            message:@"File is not packaged using ACS-6."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-#else
-		m_contentLength = m_byteStream->BytesAvailable();
-#endif
 		m_contentLengthCheck = 0;
 		m_hasProperStream = YES;
 	}
