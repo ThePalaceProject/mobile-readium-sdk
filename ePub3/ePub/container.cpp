@@ -115,63 +115,19 @@ bool Container::Open(const string& path)
 
     ParseVendorMetadata();
 
-#if defined (FEATURE_DRM_CONNECTOR)
-    PackageList thepackages;
-    for (auto n : nodes)
-    {
-        string type = _getProp(n, "media-type");
-        
-        string path = _getProp(n, "full-path");
-        if (path.empty())
-            continue;
-        
-        auto pkg = Package::New(Ptr(), type);
-        if (pkg->Open(path))
-        {
-            thepackages.push_back(pkg);
-            _packages.push_back(pkg);
-        }
-    }
-
-    auto fm = FilterManager::Instance();
-    for (auto& pkg : thepackages)
-    {
-        auto fc = fm->BuildFilterChainForPackage(pkg);
-        pkg->SetFilterChain(fc);
-    }
-    
-    for (auto pkgIt = _packages.begin(); pkgIt != _packages.end(); )
-    {
-        auto bookPkg = std::dynamic_pointer_cast<Package>(*pkgIt);
-        if (!bookPkg->DoUnpack())
-        {
-            pkgIt = _packages.erase(pkgIt);
-            continue;
-        }
-        pkgIt++;
-    }
-
-#else
-    for (auto n : nodes)
-    {
-        string type = _getProp(n, "media-type");
-        
-        string path = _getProp(n, "full-path");
-        if (path.empty())
-            continue;
-        
-        auto pkg = Package::New(Ptr(), type);
-        if (pkg->Open(path))
-            _packages.push_back(pkg);
-    }
-
-    auto fm = FilterManager::Instance();
-	for (auto& pkg : _packages)
+	for (auto n : nodes)
 	{
-        auto fc = fm->BuildFilterChainForPackage(pkg);
-		pkg->SetFilterChain(fc);
+		string type = _getProp(n, "media-type");
+
+		string path = _getProp(n, "full-path");
+		if (path.empty())
+			continue;
+
+		auto pkg = Package::New(Ptr(), type);
+		if (pkg->Open(path))
+			_packages.push_back(pkg);
 	}
-#endif
+
 	return true;
 }
 ContainerPtr Container::OpenContainer(const string &path)
@@ -192,8 +148,6 @@ ContainerPtr Container::OpenContainer(const string &path)
 
 	return result;
 }
-
-#ifdef SUPPORT_ASYNC
 future<ContainerPtr> Container::OpenContainerAsync(const string& path, launch policy)
 {
     auto result = ContentModuleManager::Instance()->LoadContentAtPath(path, policy);
@@ -210,8 +164,6 @@ future<ContainerPtr> Container::OpenContainerAsync(const string& path, launch po
     
     return result;
 }
-#endif /* SUPPORT_ASYNC */
-
 #if EPUB_PLATFORM(WINRT)
 ContainerPtr Container::OpenSynchronouslyForWinRT(const string& path)
 {

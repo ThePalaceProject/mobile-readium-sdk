@@ -364,11 +364,6 @@ public:
     ContainerPtr            GetContainer()          const       { return Owner(); }
     
     virtual bool            Open(const string& path);
-
-#if defined(FEATURE_DRM_CONNECTOR)
-    bool                    DoUnpack();
-#endif
-
     bool                    _OpenForTest(shared_ptr<xml::Document> doc, const string& basePath);
     
     ///
@@ -498,6 +493,7 @@ public:
     
     unique_ptr<ArchiveReader>   ReaderForRelativePath(const string& path)       const;
 
+	// FIXME: this might be obsolete (not in use)
     unique_ptr<ArchiveXmlReader>    XmlReaderForRelativePath(const string& path)    const {
         try { return unique_ptr<ArchiveXmlReader>(new ArchiveXmlReader(ReaderForRelativePath(path))); }
         catch (std::invalid_argument&) { return nullptr; }
@@ -515,12 +511,12 @@ public:
     shared_ptr<AsyncByteStream>     ContentStreamForItem(ManifestItemPtr manifestItem)  const;
 #endif /* SUPPORT_ASYNC */
 
-    EPUB3_EXPORT
+	EPUB3_EXPORT
 	shared_ptr<ByteStream>			GetFilterChainByteStream(SpineItemPtr spineItem)    const {
 		return GetFilterChainByteStream(spineItem->ManifestItem());
 	}
     
-    EPUB3_EXPORT
+	EPUB3_EXPORT
 	shared_ptr<ByteStream>		    GetFilterChainByteStream(ManifestItemPtr manifestItem)  const;
     
     EPUB3_EXPORT

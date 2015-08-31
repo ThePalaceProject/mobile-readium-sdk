@@ -35,11 +35,25 @@ FilterChainByteStream::~FilterChainByteStream()
 {
 }
 
+//FilterChainByteStream::FilterChainByteStream(std::vector<ContentFilterPtr>& filters, ConstManifestItemPtr &manifestItem)
+//: m_filters(), m_filterContexts(), _needs_cache(false), _cache(), _read_cache()
+//{
+//    _input = NULL;
+//    _cache.SetUsesSecureErasure();
+//    _read_cache.SetUsesSecureErasure();
+//
+//    for (ContentFilterPtr filter : filters)
+//    {
+//        m_filters.push_back(filter);
+//        m_filterContexts.push_back(std::unique_ptr<FilterContext>(filter->MakeFilterContext(manifestItem)));
+//
+//        if (filter->GetOperatingMode() == ContentFilter::OperatingMode::RequiresCompleteData && !_needs_cache)
+//            _needs_cache = true;
+//    }
+//}
+
 FilterChainByteStream::FilterChainByteStream(std::unique_ptr<SeekableByteStream>&& input, std::vector<ContentFilterPtr>& filters, ConstManifestItemPtr manifestItem)
 : _input(std::move(input)), m_filters(), m_filterContexts(), _needs_cache(false), _cache(), _read_cache(), _cacheHasBeenFilledUp(false)
-#if defined(FEATURE_DRM_CONNECTOR)
-, _manifestItemPtr(manifestItem)
-#endif
 {
     _cache.SetUsesSecureErasure();
     _read_cache.SetUsesSecureErasure();
