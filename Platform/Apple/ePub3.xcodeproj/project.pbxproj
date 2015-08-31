@@ -16,11 +16,6 @@
 		1EFA3ACB17AB0BEF003A4BC2 /* filter_manager_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */; };
 		1EFA3ACC17AB0C7A003A4BC2 /* filter_manager_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */; };
 		3418BA7D16C4151E009AA7EF /* ring_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA88FD116C2B4ED00F2014B /* ring_buffer.cpp */; };
-		46E47E001AD2B08A001976BD /* adept_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47DFE1AD2B08A001976BD /* adept_filter.cpp */; };
-		46E47E011AD2B08A001976BD /* adept_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47DFE1AD2B08A001976BD /* adept_filter.cpp */; };
-		46E47E021AD2B08A001976BD /* adept_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E47DFF1AD2B08A001976BD /* adept_filter.h */; };
-		46E47E0E1AD2B0A6001976BD /* connectorHelperFns_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */; };
-		46E47E101AD2B0A6001976BD /* connectorHelperFns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */; };
 		588D24201A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */; };
 		588D24211A02EF8F006A92BB /* PassThroughFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */; };
 		588D24221A02EF8F006A92BB /* PassThroughFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 588D241F1A02EF8F006A92BB /* PassThroughFilter.h */; };
@@ -450,11 +445,6 @@
 		1ED0084717A9DC6F00819EBD /* initialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initialization.cpp; sourceTree = "<group>"; };
 		1EFA3AC917AB0BC0003A4BC2 /* filter_manager_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filter_manager_impl.h; sourceTree = "<group>"; };
 		1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_manager_impl.cpp; sourceTree = "<group>"; };
-		46E47DFE1AD2B08A001976BD /* adept_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adept_filter.cpp; sourceTree = "<group>"; };
-		46E47DFF1AD2B08A001976BD /* adept_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adept_filter.h; sourceTree = "<group>"; };
-		46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = connectorHelperFns_iOS.mm; sourceTree = "<group>"; };
-		46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connectorHelperFns.cpp; sourceTree = "<group>"; };
-		46E47E051AD2B0A6001976BD /* connectorHelperFns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectorHelperFns.h; sourceTree = "<group>"; };
 		46E9A6BF1B007F9C00201A2F /* ePub3+RMSDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "ePub3+RMSDK.xcconfig"; path = "../../ePub3/ePub3+RMSDK.xcconfig"; sourceTree = "<group>"; };
 		588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassThroughFilter.cpp; sourceTree = "<group>"; };
 		588D241F1A02EF8F006A92BB /* PassThroughFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassThroughFilter.h; sourceTree = "<group>"; };
@@ -957,16 +947,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46E47E1C1AD2B0B3001976BD /* Connector */ = {
-			isa = PBXGroup;
-			children = (
-				46E47E031AD2B0A6001976BD /* connectorHelperFns_iOS.mm */,
-				46E47E041AD2B0A6001976BD /* connectorHelperFns.cpp */,
-				46E47E051AD2B0A6001976BD /* connectorHelperFns.h */,
-			);
-			name = Connector;
-			sourceTree = "<group>";
-		};
 		588D241D1A02EF70006A92BB /* SampleFilters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,8 +1106,6 @@
 		AB6AC71E1684B698000DE924 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
-				46E47DFE1AD2B08A001976BD /* adept_filter.cpp */,
-				46E47DFF1AD2B08A001976BD /* adept_filter.h */,
 				AB6AC7231684B93C000DE924 /* font_obfuscation.cpp */,
 				AB6AC7241684B93C000DE924 /* font_obfuscation.h */,
 			);
@@ -1615,7 +1593,6 @@
 		ABAB94B616654F580018D451 /* ePub */ = {
 			isa = PBXGroup;
 			children = (
-				46E47E1C1AD2B0B3001976BD /* Connector */,
 				AB8C796B182190DB0013054F /* ContentModule */,
 				AB6AC71D1684B691000DE924 /* Filters */,
 				ABA38AA3167BA6E000CB8EDB /* Library */,
@@ -1849,7 +1826,6 @@
 				AB5284E717CCE22E003D7BBF /* pointer_type.h in Headers */,
 				ABA38A9F167A868100CB8EDB /* glossary.h in Headers */,
 				ABA38AA7167BA6FA00CB8EDB /* library.h in Headers */,
-				46E47E021AD2B08A001976BD /* adept_filter.h in Headers */,
 				AB6AC7221684B6AD000DE924 /* filter.h in Headers */,
 				AB6AC7261684B93C000DE924 /* font_obfuscation.h in Headers */,
 				AB5284D817CBD436003D7BBF /* Forward.h in Headers */,
@@ -2150,7 +2126,6 @@
 				ABA4BB4816ADF64400161B77 /* package.cpp in Sources */,
 				ABA4BB4916ADF64400161B77 /* spine.cpp in Sources */,
 				ABA4BB4A16ADF64400161B77 /* manifest.cpp in Sources */,
-				46E47E0E1AD2B0A6001976BD /* connectorHelperFns_iOS.mm in Sources */,
 				ABA4BB4C16ADF64400161B77 /* xpath_wrangler.cpp in Sources */,
 				ABA4BB4D16ADF64400161B77 /* cfi.cpp in Sources */,
 				ABA4BB4E16ADF64400161B77 /* encryption.cpp in Sources */,
@@ -2164,7 +2139,6 @@
 				ABA4BB5416ADF64400161B77 /* node.cpp in Sources */,
 				ABA4BB5516ADF64400161B77 /* element.cpp in Sources */,
 				ABA4BB5616ADF64400161B77 /* xpath.cpp in Sources */,
-				46E47E101AD2B0A6001976BD /* connectorHelperFns.cpp in Sources */,
 				ABA4BB5716ADF64400161B77 /* base.cpp in Sources */,
 				ABA4BB5816ADF64400161B77 /* io.cpp in Sources */,
 				ABA4BB5916ADF64400161B77 /* schema.cpp in Sources */,
@@ -2181,7 +2155,6 @@
 				ABA88FD916C4415D00F2014B /* ios_get_progname.m in Sources */,
 				AB17B29F171301C800FD5917 /* run_loop_cf.cpp in Sources */,
 				AB976C4B173443DD00AC26CF /* property.cpp in Sources */,
-				46E47E011AD2B08A001976BD /* adept_filter.cpp in Sources */,
 				AB52850417CE6EE7003D7BBF /* executor.cpp in Sources */,
 				AB5284CE17CBADE2003D7BBF /* CPUCacheUtils_arm.S in Sources */,
 				AB976C50173803F800AC26CF /* property_extension.cpp in Sources */,
@@ -2326,7 +2299,6 @@
 				AB906FAE182C1DFF0097A7FE /* optional.cpp in Sources */,
 				ABA88FD216C2B4ED00F2014B /* ring_buffer.cpp in Sources */,
 				AB17B29E171301C800FD5917 /* run_loop_cf.cpp in Sources */,
-				46E47E001AD2B08A001976BD /* adept_filter.cpp in Sources */,
 				AB976C4A173443DD00AC26CF /* property.cpp in Sources */,
 				AB976C4F173803F800AC26CF /* property_extension.cpp in Sources */,
 				AB976C581738057900AC26CF /* property_holder.cpp in Sources */,

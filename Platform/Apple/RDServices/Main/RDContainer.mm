@@ -33,9 +33,6 @@
 #import <ePub3/utilities/error_handler.h>
 #import "RDPackage.h"
 
-#if defined(FEATURE_DRM_CONNECTOR)
-#import <ePub3/adept_filter.h>
-#endif
 
 @interface RDContainer () {
 	@private std::shared_ptr<ePub3::Container> m_container;
@@ -87,16 +84,13 @@
 
 		ePub3::InitializeSdk();
 		ePub3::PopulateFilterManager();
-#if defined(FEATURE_DRM_CONNECTOR)
-		ePub3::AdeptFilter::Register();
-#endif
-	  
+		
 		if ([delegate respondsToSelector:@selector(containerRegisterFilters:)]) {
 			[delegate containerRegisterFilters:self];
 		}
 
 		m_path = path;
-		m_container = ePub3::Container::OpenContainer(m_path.UTF8String);
+		m_container = ePub3::Container::OpenContainer(path.UTF8String);
 
 		if (m_container == nullptr) {
 			return nil;

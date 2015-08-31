@@ -34,7 +34,6 @@
 #if defined(FEATURE_DRM_CONNECTOR)
 #include "dp_utils_crypt.h"
 #include "dp_fuse.h"
-#include "connectorHelperFns.h"
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////////
