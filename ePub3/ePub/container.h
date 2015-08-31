@@ -31,11 +31,6 @@
 #include <vector>
 #include <ePub3/utilities/future.h>
 
-#if defined(FEATURE_DRM_CONNECTOR)
-#include "dp_utils_crypt.h"
-#include "dp_fuse.h"
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////////
 // Bit of a hack -- make the WinRT Container class available so we can befriend it.
 
@@ -109,17 +104,19 @@ public:
     /// Creates and returns a new Container instance by calling OpenContainerAsync() and blocking.
     static ContainerPtr
         OpenContainer(const string& path);
-    
+
+#ifdef SUPPORT_ASYNC
     ///
     /// Asynchronously returns a new Container instance.
     static future<ContainerPtr>
         OpenContainerAsync(const string& path, launch policy = launch::any);
+#endif /* SUPPORT_ASYNC */
 
 	///
 	/// Synchronously creates a new container. Available for the use of ContentModule implementations only.
 	static ContainerPtr
 		OpenContainerForContentModule(const string& path);
-  
+    
     virtual         ~Container();
     
     ///
@@ -200,22 +197,6 @@ public:
     // TODO: this API does not need to be public, only used internally by Package::Open() to adjust OPF rendition:layout|orientation properties
     const string GetVendorMetadata_AppleIBooksDisplayOption_FixedLayout() const { return _appleIBooksDisplayOption_FixedLayout; };
     const string GetVendorMetadata_AppleIBooksDisplayOption_Orientation() const { return _appleIBooksDisplayOption_Orientation; };
-    
-#if defined(FEATURE_DRM_CONNECTOR)
-    dp::ref<dputils::EncryptionMetadata> getEncryptionMetadata(){ return _encMetadata; }
-    const dp::Data& getRightsXMLData(){ return _rightsXMLData; }
-    static dpdev::Device *getAdeptDevice()
-    {
-        dpdev::DeviceProvider *deviceProvider = dpdev::DeviceProvider::getProvider(0);
-        if (deviceProvider == NULL)
-        {
-            return NULL;
-        }
-        
-        dpdev::Device *deviceSelf = deviceProvider->getDevice(0);
-        return deviceSelf;
-    }
-#endif //#if defined(FEATURE_DRM_CONNECTOR)
 
 protected:
     ArchivePtr						_archive;
@@ -224,11 +205,6 @@ protected:
     EncryptionList					_encryption;
 	std::shared_ptr<ContentModule>	_creator;
 	string							_path;
-    
-#if defined(FEATURE_DRM_CONNECTOR)
-    dp::ref<dputils::EncryptionMetadata> _encMetadata;
-    dp::Data                             _rightsXMLData;
-#endif //#if defined(FEATURE_DRM_CONNECTOR)
     
     ///
     /// Parses the file META-INF/encryption.xml into an EncryptionList.

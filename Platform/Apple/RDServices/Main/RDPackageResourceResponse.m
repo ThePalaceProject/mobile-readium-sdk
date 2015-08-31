@@ -60,13 +60,13 @@
 			contentType = @"application/xhtml+xml";
 		} else if([ext isEqualToString:@"xml"]) {
 			contentType = @"application/xml";
-        } else if ([ext isEqualToString:@"svg"]) {
+		} else if ([ext isEqualToString:@"svg"]) {
 			contentType = @"image/svg+xml";
-        } else if ([ext isEqualToString:@"js"]) {
+		} else if ([ext isEqualToString:@"js"]) {
 			contentType = @"text/javascript";
-        } else if ([ext isEqualToString:@"css"]) {
+		} else if ([ext isEqualToString:@"css"]) {
 			contentType = @"text/css";
-        }
+		}
 	}
 
 	if (contentType) {

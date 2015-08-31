@@ -445,7 +445,6 @@
 		1ED0084717A9DC6F00819EBD /* initialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initialization.cpp; sourceTree = "<group>"; };
 		1EFA3AC917AB0BC0003A4BC2 /* filter_manager_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filter_manager_impl.h; sourceTree = "<group>"; };
 		1EFA3ACA17AB0BEF003A4BC2 /* filter_manager_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_manager_impl.cpp; sourceTree = "<group>"; };
-		46E9A6BF1B007F9C00201A2F /* ePub3+RMSDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "ePub3+RMSDK.xcconfig"; path = "../../ePub3/ePub3+RMSDK.xcconfig"; sourceTree = "<group>"; };
 		588D241E1A02EF8F006A92BB /* PassThroughFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassThroughFilter.cpp; sourceTree = "<group>"; };
 		588D241F1A02EF8F006A92BB /* PassThroughFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassThroughFilter.h; sourceTree = "<group>"; };
 		850B1AE816A75AB000619C3C /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestData; path = ../../TestData; sourceTree = "<group>"; };
@@ -1541,7 +1540,6 @@
 		ABA72C191655382E003125FF = {
 			isa = PBXGroup;
 			children = (
-				46E9A6BF1B007F9C00201A2F /* ePub3+RMSDK.xcconfig */,
 				850B1AE816A75AB000619C3C /* TestData */,
 				ABA72C261655382E003125FF /* ePub3 */,
 				AB61CE4C1694845700299BB1 /* UnitTests */,
@@ -2349,51 +2347,19 @@
 		ABA4BAEC16ADF5A600161B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURL_INCLUDES = "";
 				DSTROOT = /tmp/ePub3_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../../ePub3-iOS/ePub3-iOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=0",
-					"$(UFT_DEFINITIONS)",
-					"$(CONNECTOR_DEFINITIONS)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "";
-				"HEADER_SEARCH_PATHS[arch=arm64]" = (
+				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH64)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=i386]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=x86_64]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH64)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2410,44 +2376,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=0",
-					"$(UFT_DEFINITIONS)",
-					"$(CONNECTOR_DEFINITIONS)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "";
-				"HEADER_SEARCH_PATHS[arch=arm64]" = (
+				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH64)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=i386]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
-				);
-				"HEADER_SEARCH_PATHS[arch=x86_64]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH64)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2473,18 +2408,12 @@
 					"BUILDING_EPUB3=1",
 					"DEBUG=1",
 					"$(inherited)",
-					"$(CONNECTOR_DEFINITIONS)",
-					"$(UFT_DEFINITIONS)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -2506,17 +2435,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BUILDING_EPUB3=1",
 					"NDEBUG=1",
-					"$(CONNECTOR_DEFINITIONS)",
-					"$(UFT_DEFINITIONS)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -2532,23 +2455,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=1",
-					"$(UFT_DEFINITIONS)",
-					"$(CONNECTOR_DEFINITIONS)",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
 				);
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2563,22 +2476,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"USING_ICU=1",
-					"$(UFT_DEFINITIONS)",
-					"$(CONNECTOR_DEFINITIONS)",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-				);
-				"HEADER_SEARCH_PATHS[arch=armv7s]" = (
-					/usr/include/libxml2,
-					"$(SRCROOT)/include",
-					"$(ADEPT_CONNECTOR_INCLUDES)",
-					"$(LIBCURL_HEADER_SEARCH_PATH32)",
 				);
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				LIBRARY_SEARCH_PATHS = "$(ADEPT_CONNECTOR_LIBRARY_SEARCH_PATHS)";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

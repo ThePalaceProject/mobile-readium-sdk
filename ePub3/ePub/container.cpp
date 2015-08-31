@@ -91,27 +91,6 @@ bool Container::Open(const string& path)
 		return false;
 
 	LoadEncryption();
-    
-#if defined(FEATURE_DRM_CONNECTOR)
-    {
-        // Assuming that rights.xml path is the same as epub path with "_rights.xml" suffix.
-        // Clients can change this behavior whenever they want
-        string rightsXMLPath = path + "_rights.xml";
-        ::printf("rights.xml filename = %s\n", rightsXMLPath.utf8());
-        FILE *fp = fopen(rightsXMLPath.c_str(), "rb");
-        if(fp)
-        {
-            size_t fileSize = 0;
-            fseek(fp, 0, SEEK_END);
-            fileSize = ftell(fp);
-            fseek(fp, 0, SEEK_SET);
-            unique_ptr<unsigned char> buf = unique_ptr<unsigned char>(new unsigned char[fileSize]);
-            fread(buf.get(), fileSize, 1, fp);
-            _rightsXMLData = dp::Data(buf.get(), fileSize);
-            fclose(fp);
-        }
-    }
-#endif //#if defined(FEATURE_DRM_CONNECTOR)
 
     ParseVendorMetadata();
 
@@ -148,6 +127,8 @@ ContainerPtr Container::OpenContainer(const string &path)
 
 	return result;
 }
+
+#ifdef SUPPORT_ASYNC
 future<ContainerPtr> Container::OpenContainerAsync(const string& path, launch policy)
 {
     auto result = ContentModuleManager::Instance()->LoadContentAtPath(path, policy);
@@ -164,6 +145,8 @@ future<ContainerPtr> Container::OpenContainerAsync(const string& path, launch po
     
     return result;
 }
+#endif /* SUPPORT_ASYNC */
+
 #if EPUB_PLATFORM(WINRT)
 ContainerPtr Container::OpenSynchronouslyForWinRT(const string& path)
 {
@@ -314,17 +297,6 @@ void Container::LoadEncryption()
         if ( encPtr->ParseXML(node) )
             _encryption.push_back(encPtr);
     }
-    
-#if defined(FEATURE_DRM_CONNECTOR)
-    unique_ptr<ArchiveReader> pZipReader1 = _archive->ReaderAtPath(gEncryptionFilePath);
-    if ( !pZipReader1 )
-        return;
-    size_t totalSize = pZipReader1->total_size();
-    unique_ptr<unsigned char> data = unique_ptr<unsigned char>(new unsigned char[totalSize]);
-    pZipReader1->read(data.get(), totalSize);
-    dp::Data encryptionXMLData(data.get(), totalSize);
-    _encMetadata = dputils::EncryptionMetadata::createFromXMLData(encryptionXMLData);
-#endif //#if defined(FEATURE_DRM_CONNECTOR)
 }
 shared_ptr<EncryptionInfo> Container::EncryptionInfoForPath(const string &path) const
 {

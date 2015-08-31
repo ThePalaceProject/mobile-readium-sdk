@@ -2,5 +2,3 @@ GCC_WARN_ABOUT_RETURN_TYPE = YES;
 GCC_WARN_UNUSED_VARIABLE = YES;
 GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-
-ADEPT_CONNECTOR_INCLUDES = ../../../../../dp/public ../../../../../drm/adept/public ../../../../../xml/uft/public ../../../../../xml/mdom/public ../../../../../xml/xpath/public

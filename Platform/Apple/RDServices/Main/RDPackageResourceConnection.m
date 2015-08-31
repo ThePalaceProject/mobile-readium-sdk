@@ -98,7 +98,7 @@ static __weak RDPackageResourceServer *m_packageResourceServer = nil;
 - (NSObject <HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path {
 	if (m_packageResourceServer == nil ||
 		method == nil ||
-		(![method isEqualToString:@"GET"] && ![method isEqualToString:@"HEAD"]) ||
+		![method isEqualToString:@"GET"] ||
 		path == nil ||
 		path.length == 0)
 	{
@@ -257,12 +257,11 @@ static __weak RDPackageResourceServer *m_packageResourceServer = nil;
 					if (newData != nil) {
 						RDPackageResourceDataResponse *dataResponse = [[RDPackageResourceDataResponse alloc]
 																	   initWithData:newData];
-            
-            
-            if (resource.mimeType) {
-                dataResponse.contentType = resource.mimeType;
-            }
-            
+
+						if (resource.mimeType) {
+							dataResponse.contentType = resource.mimeType;
+						}
+
 						response = dataResponse;
 						return response;
 					}

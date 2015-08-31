@@ -71,7 +71,7 @@
 		
 		[self ensureProperByteStream:NO];
 
-    
+
 		NSMutableData *md = [[NSMutableData alloc] initWithCapacity:m_contentLength == 0 ? 1 : m_contentLength];
 
 		m_contentLengthCheck = 0;
