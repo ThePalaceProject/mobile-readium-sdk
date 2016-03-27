@@ -1,6 +1,7 @@
 #import "GCDAsyncSocket.h"
 #import "HTTPServer.h"
 #import "HTTPConnection.h"
+#import "HTTPDataResponse.h"
 #import "HTTPMessage.h"
 #import "HTTPResponse.h"
 #import "HTTPAuthenticationRequest.h"
@@ -991,6 +992,20 @@ static NSMutableArray *recentNonces;
 	// Respond properly to HTTP 'GET' and 'HEAD' commands
 	httpResponse = [self httpResponseForMethod:method URI:uri];
 	
+  // FIXME: This is a hack. A better solution is already available in
+  // upstream Readium, and we'll switch to that once we get off of our
+  // own Readium fork.
+  if([uri containsString:@"/simplified-readium/"])
+  {
+    NSString *const rest = [uri stringByReplacingOccurrencesOfString:@"/simplified-readium"
+                                                          withString:@""];
+    httpResponse = [[HTTPDataResponse alloc] initWithData:
+                    [NSData dataWithContentsOfURL:
+                     [[NSBundle mainBundle] URLForResource:rest withExtension:@""]]];
+    [self sendResponseHeadersAndBody];
+    return;
+  }
+  
 	if (httpResponse == nil)
 	{
 		[self handleResourceNotFound];
