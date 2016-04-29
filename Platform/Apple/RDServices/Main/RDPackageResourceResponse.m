@@ -30,6 +30,10 @@
 #import "RDPackageResourceResponse.h"
 #import "RDPackageResource.h"
 #import "RDPackageResourceServer.h"
+#import "NSDate+RDDateAsString.h"
+
+
+NSString * const kCacheControlHTTPHeader = @"no-transform,public,max-age=3000,s-maxage=9000";
 
 
 @interface RDPackageResourceResponse () {
@@ -67,13 +71,18 @@
 		} else if ([ext isEqualToString:@"css"]) {
 			contentType = @"text/css";
 		}
-	}
-
-	if (contentType) {
-		return @{@"Content-Type": contentType};
-	}
-	
-	return @{};
+  }
+  
+  // Add cache-control, expires and last-modified HTTP headers so the webview caches shared assets
+  NSDate *now = [NSDate date];
+  NSString *nowStr = [now dateAsString];
+  NSString *expStr = [[now dateByAddingTimeInterval:60*60*24*10] dateAsString];
+  if (contentType) {
+    return @{@"Content-Type": contentType, @"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
+  }
+  else {
+    return @{@"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
+  }
 }
 
 
