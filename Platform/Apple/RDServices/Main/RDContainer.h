@@ -42,7 +42,12 @@
  * the filter manager.
  * You can implement this to register custom filters.
  */
-- (void)containerRegisterFilters:(RDContainer *)container;
+- (void)containerRegisterContentFilters:(RDContainer *)container;
+
+/**
+ * You can implement this to register content modules.
+ */
+- (void)containerRegisterContentModules:(RDContainer *)container;
 
 @end
 
@@ -55,5 +60,16 @@
 @property (nonatomic, readonly) NSString *path;
 
 - (instancetype)initWithDelegate:(id <RDContainerDelegate>)delegate path:(NSString *)path;
+
+/**
+ * Returns whether the given file exists in the container's archive.
+ */
+- (BOOL)fileExistsAtPath:(NSString *)relativePath;
+
+/**
+ * Read the content of the file at the relative path in the container's archive.
+ * If no file is found, returns nil.
+ */
+- (NSString *)contentsOfFileAtPath:(NSString *)relativePath encoding:(NSStringEncoding)encoding;
 
 @end

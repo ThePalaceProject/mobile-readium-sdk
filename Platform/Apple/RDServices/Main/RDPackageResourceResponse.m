@@ -55,34 +55,28 @@ NSString * const kCacheControlHTTPHeader = @"no-transform,public,max-age=3000,s-
 
 
 - (NSDictionary *)httpHeaders {
-	NSString *contentType = m_resource.mimeType;
-
-	// force MIMEType for basic files
-	if (m_resource.relativePath) {
-		NSString *ext = [[m_resource.relativePath pathExtension] lowercaseString];
-		if ([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
-			contentType = @"application/xhtml+xml";
-		} else if([ext isEqualToString:@"xml"]) {
-			contentType = @"application/xml";
-		} else if ([ext isEqualToString:@"svg"]) {
-			contentType = @"image/svg+xml";
-		} else if ([ext isEqualToString:@"js"]) {
-			contentType = @"text/javascript";
-		} else if ([ext isEqualToString:@"css"]) {
-			contentType = @"text/css";
+	if(m_resource.relativePath) {
+		NSString* ext = [[m_resource.relativePath pathExtension] lowercaseString];
+		if([ext isEqualToString:@"xhtml"] || [ext isEqualToString:@"html"]) {
+			return [NSDictionary dictionaryWithObject:@"application/xhtml+xml" forKey:@"Content-Type"]; // FORCE
 		}
-  }
-  
-  // Add cache-control, expires and last-modified HTTP headers so the webview caches shared assets
-  NSDate *now = [NSDate date];
-  NSString *nowStr = [now dateAsString];
-  NSString *expStr = [[now dateByAddingTimeInterval:60*60*24*10] dateAsString];
-  if (contentType) {
-    return @{@"Content-Type": contentType, @"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
-  }
-  else {
-    return @{@"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
-  }
+		else if([ext isEqualToString:@"xml"]) {
+			return [NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Content-Type"]; // FORCE
+		}
+	}
+
+	NSString *contentType = self->m_resource.mimeType;
+    
+    // Add cache-control, expires and last-modified HTTP headers so the webview caches shared assets
+    NSDate *now = [NSDate date];
+    NSString *nowStr = [now dateAsString];
+    NSString *expStr = [[now dateByAddingTimeInterval:60*60*24*10] dateAsString];
+    if (contentType) {
+        return @{@"Content-Type": contentType, @"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
+    }
+    else {
+        return @{@"Cache-Control": kCacheControlHTTPHeader, @"Last-Modified": nowStr, @"Expires": expStr};
+    }
 }
 
 
