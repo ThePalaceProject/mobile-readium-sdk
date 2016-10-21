@@ -261,7 +261,7 @@ shared_ptr<xml::Document> ManifestItem::ReferencedDocument() const
 	void *docBuf = nullptr;
 	std::size_t resbuflen = byteStream->ReadAllBytes(&docBuf);
 	
-    int flags = XML_PARSE_RECOVER|XML_PARSE_NOENT|XML_PARSE_DTDATTR;
+    int flags = XML_PARSE_RECOVER|XML_PARSE_NOENT|XML_PARSE_DTDATTR|XML_PARSE_NONET;
 	
     // In some EPUBs, UTF-8 XML/HTML files have a superfluous (erroneous?) BOM, so we either:
     // pass "utf-8" and expect InputBuffer::read_cb (in io.cpp) to skip the 3 erroneous bytes
