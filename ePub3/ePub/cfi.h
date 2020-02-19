@@ -53,7 +53,7 @@ public:
 public:
     ///
     /// Create an empty CFI.
-                    CFI() : _components(), _rangeStart(), _rangeEnd(), _options(0) {}
+                    CFI() : _components(), _options(0), _rangeStart(), _rangeEnd() {}
     /**
      Create a ranged CFI from a base and two relative CFIs.
      @param base A CFI consisting of components common to both the start and end of
@@ -71,7 +71,7 @@ public:
     EPUB3_EXPORT    CFI(const string& str);
     ///
     /// Create a copy of an existing CFI.
-                    CFI(const CFI& o) : _components(o._components), _rangeStart(o._rangeStart), _rangeEnd(o._rangeEnd), _options(o._options) {}
+                    CFI(const CFI& o) : _components(o._components), _options(o._options), _rangeStart(o._rangeStart), _rangeEnd(o._rangeEnd) {}
     /**
      Creates a relative CFI from a particular node index within another.
      
@@ -92,7 +92,7 @@ public:
     EPUB3_EXPORT    CFI(const CFI& o, size_t fromIndex);
     ///
     /// C++11 move constructor.
-    EPUB3_EXPORT    CFI(CFI&& o) : _components(std::move(o._components)), _rangeStart(std::move(o._rangeStart)), _rangeEnd(std::move(o._rangeEnd)), _options(o._options) {}
+    EPUB3_EXPORT    CFI(CFI&& o) : _components(std::move(o._components)), _options(o._options), _rangeStart(std::move(o._rangeStart)), _rangeEnd(std::move(o._rangeEnd)) {}
     virtual         ~CFI() {}
     
     /**

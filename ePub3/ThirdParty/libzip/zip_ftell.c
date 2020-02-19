@@ -34,7 +34,7 @@
 
 #include "zipint.h"
 
-ZIP_EXTERN long
+ZIP_EXTERN off_t
 zip_ftell(struct zip_file* zf)
 {
     if (!zf)

@@ -39,7 +39,14 @@
 #include <ePub3/content_handler.h>
 #include <ePub3/media_support_info.h>
 #include <ePub3/property_holder.h>
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdefaulted-function-deleted"
+#endif
 #include <ePub3/epub_collection.h>
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 #include <ePub3/utilities/xml_identifiable.h>
 #include <ePub3/utilities/string_view.h>
 //#include "media-overlays_smil_model.h"

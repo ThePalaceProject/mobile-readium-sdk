@@ -68,7 +68,7 @@ future<ContainerPtr>
 ContentModuleManager::LoadContentAtPath(const string& path, launch policy)
 {
     std::unique_lock<std::mutex>(_mutex);
-    
+
     if (_known_modules.empty())
     {
         // special case for when we don't have any Content Modules to rely on for an initialized result

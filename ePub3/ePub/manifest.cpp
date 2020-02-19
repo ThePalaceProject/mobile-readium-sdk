@@ -272,9 +272,9 @@ shared_ptr<xml::Document> ManifestItem::ReferencedDocument() const
 	
 	xmlDocPtr raw;
     if ( _mediaType == "text/html" ) {
-        raw = htmlReadMemory((const char*)docBuf, resbuflen, path.c_str(), encoding, flags);
+        raw = htmlReadMemory((const char*)docBuf, (int)resbuflen, path.c_str(), encoding, flags);
     } else {
-        raw = xmlReadMemory((const char*)docBuf, resbuflen, path.c_str(), encoding, flags);
+        raw = xmlReadMemory((const char*)docBuf, (int)resbuflen, path.c_str(), encoding, flags);
     }
 	
 	result = xml::Wrapped<xml::Document>(raw);

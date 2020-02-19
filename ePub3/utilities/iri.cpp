@@ -63,9 +63,9 @@ IRI::IRI(const string& nameID, const string& namespacedString) :
 #if EPUB_COMPILER_SUPPORTS(CXX_INITIALIZER_LISTS)
     _urnComponents({gURNScheme, nameID, namespacedString}),
 #endif
-    _pureIRI(_Str("urn:", nameID, ":", namespacedString)),
-    _url(make_unique<GURL>(_pureIRI.stl_str()))
+    _pureIRI(_Str("urn:", nameID, ":", namespacedString))
 {
+    _url = make_unique<GURL>(_pureIRI.stl_str());
 #if !EPUB_COMPILER_SUPPORTS(CXX_INITIALIZER_LISTS)
     _urnComponents.push_back(gURNScheme);
     _urnComponents.push_back(nameID);
