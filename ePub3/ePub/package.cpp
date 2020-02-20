@@ -932,7 +932,8 @@ bool Package::Unpack()
                     // user shouldn't have added manual things yet, but for safety we'll look anyway
                     for ( auto ptr : _contentHandlers[mediaType] )
                     {
-                        if ( typeid(*ptr) == typeid(MediaHandler) )
+                        const auto& mediaHandler = *ptr;
+                        if ( typeid(mediaHandler) == typeid(MediaHandler) )
                         {
                             HandleError(EPUBError::OPFMultipleBindingsForMediaType);
                         }
@@ -1728,7 +1729,8 @@ const Package::StringList Package::MediaTypesWithDHTMLHandlers() const
     {
         for ( auto pHandler : pair.second )
         {
-            if ( typeid(*pHandler) == typeid(MediaHandler) )
+            const auto& mediaHandler = *pHandler;
+            if ( typeid(mediaHandler) == typeid(MediaHandler) )
             {
                 result.emplace_back(pair.first);
                 break;
