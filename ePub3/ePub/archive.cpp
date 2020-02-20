@@ -67,7 +67,7 @@ ArchiveItemInfo Archive::InfoAtPath(const string &path) const
 {
     ArchiveItemInfo info;
     info.SetPath(path);
-    return std::move(info);
+    return info;
 }
 
 EPUB3_END_NAMESPACE
