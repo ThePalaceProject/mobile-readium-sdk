@@ -45,7 +45,8 @@ ContentModuleManager* ContentModuleManager::Instance() _NOEXCEPT
 void ContentModuleManager::RegisterContentModule(std::shared_ptr<ContentModule> module,
                                                  const string& name) _NOEXCEPT
 {
-    std::unique_lock<std::mutex>(_mutex);
+    std::unique_lock<std::mutex> _(_mutex);
+
     _known_modules[name] = module;
 }
 
@@ -67,8 +68,8 @@ ContentModuleManager::RequestCredentialInput(const CredentialRequest &request)
 future<ContainerPtr>
 ContentModuleManager::LoadContentAtPath(const string& path, launch policy)
 {
-    std::unique_lock<std::mutex>(_mutex);
-    
+    std::unique_lock<std::mutex> _(_mutex);
+
     if (_known_modules.empty())
     {
         // special case for when we don't have any Content Modules to rely on for an initialized result

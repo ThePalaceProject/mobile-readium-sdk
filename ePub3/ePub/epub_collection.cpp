@@ -18,7 +18,6 @@
 //  the License, or (at your option) any later version. You should have received a copy of the GNU 
 //  Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "epub_collection.h"
 #include "package.h"
 #include <ePub3/epub3.h>
 #include <ePub3/utilities/error_handler.h>

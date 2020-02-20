@@ -68,21 +68,21 @@ public:
     
     virtual void EachItem(std::function<void(const ArchiveItemInfo&)> fn) const OVERRIDE;
     
-    virtual bool ContainsItem(const string & path) const;
-    virtual bool DeleteItem(const string & path);
+    virtual bool ContainsItem(const string & path) const OVERRIDE;
+    virtual bool DeleteItem(const string & path) OVERRIDE;
     
-    virtual bool CreateFolder(const string & path);
+    virtual bool CreateFolder(const string & path) OVERRIDE;
     
-    virtual unique_ptr<ByteStream> ByteStreamAtPath(const string& path) const;
+    virtual unique_ptr<ByteStream> ByteStreamAtPath(const string& path) const OVERRIDE;
 
 #ifdef SUPPORT_ASYNC
     virtual unique_ptr<AsyncByteStream> AsyncByteStreamAtPath(const string& path) const;
 #endif /* SUPPORT_ASYNC */
 
-    virtual unique_ptr<ArchiveReader> ReaderAtPath(const string & path) const;
-    virtual unique_ptr<ArchiveWriter> WriterAtPath(const string & path, bool compress=true, bool create=true);
+    virtual unique_ptr<ArchiveReader> ReaderAtPath(const string & path) const OVERRIDE;
+    virtual unique_ptr<ArchiveWriter> WriterAtPath(const string & path, bool compress=true, bool create=true) OVERRIDE;
         
-    virtual ArchiveItemInfo InfoAtPath(const string & path) const;
+    virtual ArchiveItemInfo InfoAtPath(const string & path) const OVERRIDE;
     
 protected:
     struct zip *    _zip;           ///< Pointer to the underlying `libzip` data type.

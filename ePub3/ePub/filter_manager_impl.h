@@ -23,7 +23,14 @@
 
 #include <ePub3/filter_manager.h>
 #include <ePub3/filter.h>
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wuser-defined-warnings"
+#endif
 #include <set>
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 EPUB3_BEGIN_NAMESPACE
 

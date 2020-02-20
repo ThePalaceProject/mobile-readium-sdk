@@ -154,8 +154,8 @@ public:
     virtual size_t offset() const OVERRIDE { return size_t(_input.tellg()); }
     
 protected:
-    virtual size_t read(uint8_t * buf, size_t len);
-    virtual bool close();
+    virtual size_t read(uint8_t * buf, size_t len) OVERRIDE;
+    virtual bool close() OVERRIDE;
     
     std::istream &  _input;
     
@@ -175,8 +175,8 @@ public:
     virtual size_t offset() const OVERRIDE { return size_t(_output.tellp()); }
     
 protected:
-    virtual bool write(const uint8_t * buffer, size_t len);
-    virtual bool close();
+    virtual bool write(const uint8_t * buffer, size_t len) OVERRIDE;
+    virtual bool close() OVERRIDE;
     
     std::ostream &  _output;
     

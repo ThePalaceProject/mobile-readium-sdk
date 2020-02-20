@@ -530,14 +530,14 @@ private:
 public:
     ///
     /// @copydoc ByteStream::BytesAvailable()
-    virtual size_type       BytesAvailable()                        _NOEXCEPT;
+    virtual size_type       BytesAvailable()  _NOEXCEPT OVERRIDE;
     ///
     /// @copydoc ByteStream::SpaceAvailable()
-    virtual size_type       SpaceAvailable()                        const _NOEXCEPT;
+    virtual size_type       SpaceAvailable()  const _NOEXCEPT OVERRIDE;
     
     ///
     /// @copydoc ByteStream::IsOpen()
-    virtual bool            IsOpen()                                const _NOEXCEPT;
+    virtual bool            IsOpen()          const _NOEXCEPT OVERRIDE;
     /**
      Opens the stream for reading and/or writing a file at a given path.
      @param path The filesystem path to the file to access.
@@ -548,14 +548,14 @@ public:
     virtual bool            Open(const string& path, std::ios::openmode mode = std::ios::in | std::ios::out);
     ///
     /// @copydoc ByteStream::Close()
-    virtual void            Close();
+    virtual void            Close() OVERRIDE;
     
     ///
     /// @copydoc ByteStream::ReadBytes()
-    virtual size_type       ReadBytes(void* buf, size_type len);
+    virtual size_type       ReadBytes(void* buf, size_type len) OVERRIDE;
     ///
     /// @copydoc ByteStream::WriteBytes()
-    virtual size_type       WriteBytes(const void* buf, size_type len);
+    virtual size_type       WriteBytes(const void* buf, size_type len) OVERRIDE;
     
     /**
      Seek to a position within the target file.
@@ -619,14 +619,14 @@ private:
 public:
     ///
     /// @copydoc ByteStream::BytesAvailable()
-    virtual size_type       BytesAvailable()                        _NOEXCEPT;
+    virtual size_type       BytesAvailable()  _NOEXCEPT OVERRIDE;
     ///
     /// @copydoc ByteStream::SpaceAvailable
-    virtual size_type       SpaceAvailable()                        const _NOEXCEPT;
+    virtual size_type       SpaceAvailable()  const _NOEXCEPT OVERRIDE;
     
     ///
     /// @copydoc ByteStream::IsOpen()
-    virtual bool            IsOpen()                                const _NOEXCEPT;
+    virtual bool            IsOpen()          const _NOEXCEPT OVERRIDE;
     /**
      Opens a file within an archive and attaches the stream.
      @param archive The Zip arrchive containing the target file.
@@ -637,14 +637,14 @@ public:
     virtual bool            Open(struct zip* archive, const string& path, int zipFlags=0);
     ///
     /// @copydoc ByteStream::Close()
-    virtual void            Close();
+    virtual void            Close() OVERRIDE;
     
     ///
     /// @copydoc ByteStream::ReadBytes()
-    virtual size_type       ReadBytes(void* buf, size_type len);
+    virtual size_type       ReadBytes(void* buf, size_type len) OVERRIDE;
     ///
     /// @copydoc ByteStream::WriteBytes()
-	virtual size_type       WriteBytes(const void* buf, size_type len);
+	virtual size_type       WriteBytes(const void* buf, size_type len) OVERRIDE;
     
     /**
      Seek to a position within the target file.

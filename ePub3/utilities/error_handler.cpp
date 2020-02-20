@@ -132,7 +132,7 @@ std::string epub_spec_error::__init(const std::error_code& code, std::string wha
             what += ": ";
         what += code.message();
     }
-    return std::move(what);
+    return what;
 }
 epub_spec_error::epub_spec_error(EPUBError __ev, const std::string& __what_arg)
   : std::runtime_error(__init(std::error_code(static_cast<int>(__ev), epub_spec_category()), __what_arg)),

@@ -48,7 +48,7 @@ public:
     UserAction(ConstManifestItemPtr item,
                const CFI& cfi,
                ActionType type=ActionType::Display)
-        : m_item(item), m_cfi(cfi), m_type(type)
+        : m_type(type), m_cfi(cfi), m_item(item)
         {}
     virtual ~UserAction()
         {}
