@@ -365,7 +365,7 @@ private:
 
 public:
     EPUB3_EXPORT            Package(const shared_ptr<Container>& owner, const string& type);
-                            Package(Package&& o) : OwnedBy(std::move(o)), PackageBase(std::move(o)) {}
+                            Package(Package&& o) : PackageBase(std::move(o)), OwnedBy(std::move(o)) {}
     virtual                 ~Package() {}
     
     ContainerPtr            GetContainer()          const       { return Owner(); }
