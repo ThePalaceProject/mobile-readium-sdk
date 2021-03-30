@@ -300,9 +300,15 @@ void Container::LoadEncryption()
 }
 shared_ptr<EncryptionInfo> Container::EncryptionInfoForPath(const string &path) const
 {
+    // Compare encryption path with URI-encoded and decoded paths
+    url_canon::RawCanonOutputW<256> output;
+    url_util::DecodeURLEscapeSequences(path.c_str(), static_cast<int>(path.utf8_size()), &output);
+    string decodedPath(output.data(), output.length());
+
     for ( auto item : _encryption )
     {
-        if ( item->Path() == path )
+        string itemPath = item->Path();
+        if ( itemPath == path || itemPath == decodedPath )
             return item;
     }
     
